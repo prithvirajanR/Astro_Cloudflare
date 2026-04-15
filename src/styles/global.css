@@ -1,0 +1,241 @@
+/* ─── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ─── KaTeX ─────────────────────────────────────────────────────── */
+@import url('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css');
+
+
+
+
+/* ─── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  --font-heading: 'Montserrat', system-ui, sans-serif;
+  --font-sans:    'Inter', system-ui, sans-serif;
+
+  /* GoFolium Dark (default) */
+  --color-bg:        #0a0a0a;
+  --color-surface:   #111111;
+  --color-surface2:  #181818;
+  --color-border:    rgba(255,255,255,0.15);
+  --color-text:      #f0f0f0;
+  --color-muted:     #9ca3af;
+  --color-accent:    #22c55e;        /* neon green */
+  --color-accent2:   #16a34a;
+  --color-tag-bg:    rgba(34,197,94,0.1);
+  --color-tag-text:  #22c55e;
+
+  --header-height:   68px;
+  --container-width: 1300px;
+}
+
+/* Light mode (toggled via .light class) */
+.light {
+  --color-bg:        #fafaf9;
+  --color-surface:   #f4f4f0;
+  --color-surface2:  #ebebeb;
+  --color-border:    #e4e4e7;
+  --color-text:      #111111;
+  --color-muted:     #6b7280;
+  --color-accent:    #16a34a;
+  --color-accent2:   #15803d;
+  --color-tag-bg:    #dcfce7;
+  --color-tag-text:  #15803d;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; }
+h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+h3 { font-size: 1.2rem; font-weight: 600; }
+
+p  { font-size: 1rem; line-height: 1.8; color: var(--color-text); }
+a  { color: inherit; text-decoration: none; }
+
+/* ─── Container ──────────────────────────────────────────────────── */
+.container {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+/* ─── Accent highlight ───────────────────────────────────────────── */
+.accent { color: var(--color-accent); }
+
+/* ─── GoFolium section headings ──────────────────────────────────── */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding-bottom: 0.65rem;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+/* ─── Cards ──────────────────────────────────────────────────────── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.75rem 2rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 24px rgba(34,197,94,0.12);
+  transform: translateY(-2px);
+}
+
+/* ─── Tags ────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-tag-text);
+  background: var(--color-tag-bg);
+  border: 1px solid rgba(34,197,94,0.25);
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 1.1rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-accent);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+  line-height: 1;
+}
+.btn:hover {
+  background: var(--color-accent);
+  color: #000;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 12px rgba(34,197,94,0.3);
+}
+
+.btn-solid {
+  background: var(--color-accent) !important;
+  color: #000 !important;
+  border-color: var(--color-accent) !important;
+  font-weight: 700;
+}
+.btn-solid:hover {
+  background: var(--color-accent2) !important;
+  border-color: var(--color-accent2) !important;
+  box-shadow: 0 0 20px rgba(34,197,94,0.4) !important;
+}
+
+/* ─── Header ─────────────────────────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background: #0f0f0f;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.light .site-header {
+  background: #fafaf9;
+  border-bottom: 1px solid #e4e4e7;
+}
+
+/* ─── Particles canvas ────────────────────────────────────────────── */
+#particles-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+.light #particles-canvas { opacity: 0.8; }
+
+/* ─── Page content above particles ───────────────────────────────── */
+.site-header {
+  z-index: 200 !important;   /* always above canvas (z-index:0) */
+  position: sticky !important;
+}
+main {
+  position: relative;
+  z-index: 2;
+}
+footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Section spacing ─────────────────────────────────────────────── */
+.section { padding: 5rem 0; }
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ─── Animations ──────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.animate-fade-up {
+  animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.will-animate { opacity: 0; transform: translateY(24px); }
+
+/* ─── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }

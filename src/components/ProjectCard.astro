@@ -1,0 +1,64 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags?: string[];
+  github?: string;
+  demo?: string;
+  featured?: boolean;
+}
+const { title, description, tags = [], github, demo, featured } = Astro.props;
+---
+
+<article class="proj-card will-animate">
+  <div class="proj-header">
+    <h3 class="proj-title">{title}</h3>
+    {featured && <span class="proj-badge">Featured</span>}
+  </div>
+  <p class="proj-desc">{description}</p>
+  {tags.length > 0 && (
+    <div class="proj-tags">
+      {tags.map(t => <span class="tag">{t}</span>)}
+    </div>
+  )}
+  {(github || demo) && (
+    <div class="proj-btns">
+      {github && <a href={github} target="_blank" rel="noopener" class="pub-btn">GitHub →</a>}
+      {demo   && <a href={demo}   target="_blank" rel="noopener" class="pub-btn">Live Demo →</a>}
+    </div>
+  )}
+</article>
+
+<style>
+.proj-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.75rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.proj-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 24px rgba(34,197,94,0.12);
+  transform: translateY(-2px);
+}
+.proj-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+.proj-title  { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
+.proj-badge  {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--color-accent); background: var(--color-tag-bg);
+  border: 1px solid rgba(34,197,94,0.3); padding: 0.15rem 0.55rem; border-radius: 999px; white-space: nowrap;
+}
+.proj-desc { font-size: 0.95rem; color: var(--color-muted); line-height: 1.7; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.proj-btns { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pub-btn {
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--color-accent); border: 1px solid rgba(34,197,94,0.3);
+  padding: 0.3rem 0.85rem; border-radius: 0.35rem;
+  background: var(--color-tag-bg);
+  transition: background 0.15s, border-color 0.15s, color 0.15s; text-decoration: none;
+}
+.pub-btn:hover { background: var(--color-accent); color: #000; border-color: var(--color-accent); }
+</style>

@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const education = [
+  { period:'Oct 2024 – Present', role:'M.Sc. Bioinformatics', org:'Freie Universität Berlin',
+    bullets:['Focus: Computational Biology, Structural Bioinformatics, Drug Discovery','Coursework: Statistical Modeling, Machine Learning, Algorithm Development'] },
+  { period:'Jul 2016 – Oct 2020', role:'B.Tech Bioinformatics', org:'Karunya Institute of Technology and Sciences',
+    bullets:['Python, IBM DB2, Oracle RDBMS, R programming','Virtual molecular screening, 3D QSAR, Molecular dynamics simulation, Toxicity analysis'] },
+];
+const experience = [
+  { period:'Jan – Jul 2024', role:'Data Analyst', org:'Accenture · Kaiser Permanente',
+    bullets:['Analyzed 100,000+ hospital records to identify patient behavior trends.','Built Power BI dashboards improving data-driven decision-making.','Engineered SQL pipelines cutting report turnaround by 30%.','Identified cost-saving opportunities via patient segmentation.'] },
+  { period:'Dec 2021 – Jan 2024', role:'Oracle Database Administrator', org:'Accenture · Kaiser Permanente',
+    bullets:['Led Oracle 11g → 19c migration with 100% data integrity and zero downtime.','Reduced application latency by 20% through SQL optimization.','Designed Oracle Data Guard disaster recovery for 24/7 operations.','Managed patch management, access controls, and security audits.'] },
+  { period:'Feb – Sept 2021', role:'IBM DB2 Database Administrator', org:'Accenture · Kaiser Permanente',
+    bullets:['Managed high-volume IBM DB2 databases for performance and reliability.','Designed normalized schemas and optimized indexes.','Led OS-level upgrades and planned capacity expansion.'] },
+];
+const skills = [
+  { cat:'Languages',      items:'Python (Pandas, NumPy), R, SQL (PL/SQL)' },
+  { cat:'Databases',      items:'Oracle 11g/19c, IBM DB2, PostgreSQL' },
+  { cat:'BI & Analytics', items:'Power BI, ETL Pipelines, Data Visualization' },
+  { cat:'Bioinformatics', items:'ESMFold, GNINA, AutoDock Vina, Drug Discovery Studio, Molecular Dynamics' },
+  { cat:'DevOps',         items:'Linux, AIX, Git, Docker' },
+  { cat:'Machine Learning',items:'scikit-learn, Classification, Regression, Clustering' },
+];
+const interests = ['Badminton','Gaming','Tech Exploration','Drug Discovery','Structural Biology'];
+---
+
+<Layout title="Journey — Prithvi Rajan" description="Full CV — education, experience, and skills of Prithvi Rajan.">
+  <div class="container">
+    <div class="page-header">
+      <h1>My Journey <span class="accent">.</span></h1>
+      <p class="page-sub">My path through data, databases, and bioinformatics.</p>
+      <a href="/Prithivi_Rajan_CV.pdf" target="_blank" class="btn btn-solid">⬇ Download CV</a>
+    </div>
+
+    <section class="j-section">
+      <h2 class="section-title">Education</h2>
+      <div class="entry-list">
+        {education.map(e => (
+          <article class="entry-card will-animate">
+            <div class="entry-meta"><span class="entry-period">{e.period}</span></div>
+            <div class="entry-body">
+              <h3 class="entry-role">{e.role}</h3>
+              <p class="entry-org">{e.org}</p>
+              <ul class="entry-bullets">{e.bullets.map(b => <li>{b}</li>)}</ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="j-section">
+      <h2 class="section-title">Experience</h2>
+      <div class="entry-list">
+        {experience.map(e => (
+          <article class="entry-card will-animate">
+            <div class="entry-meta"><span class="entry-period">{e.period}</span></div>
+            <div class="entry-body">
+              <h3 class="entry-role">{e.role}</h3>
+              <p class="entry-org">{e.org}</p>
+              <ul class="entry-bullets">{e.bullets.map(b => <li>{b}</li>)}</ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="j-section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-table will-animate">
+        {skills.map(s => (
+          <div class="skill-row">
+            <span class="skill-cat">{s.cat}</span>
+            <span class="skill-items">{s.items}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="j-section">
+      <h2 class="section-title">Interests</h2>
+      <div class="interests">
+        {interests.map(i => <span class="tag">{i}</span>)}
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+.page-header { padding: 4rem 0 3rem; border-bottom: 1px solid var(--color-border); margin-bottom: 3rem; }
+.page-header h1 { margin-bottom: 0.5rem; }
+.page-sub { font-size: 1.1rem; color: var(--color-muted); margin-bottom: 1.5rem; }
+
+.j-section { padding: 0 0 3.5rem; }
+.section-title { margin-bottom: 2rem; }
+
+.entry-list { display: flex; flex-direction: column; gap: 1.1rem; }
+.entry-card {
+  display: grid; grid-template-columns: 165px 1fr; gap: 0 1.5rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.entry-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 24px rgba(34,197,94,0.1);
+  transform: translateY(-2px);
+}
+.entry-period { font-size: 0.8rem; font-weight: 600; color: var(--color-muted); display: block; padding-top: 3px; }
+.entry-role { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
+.entry-org  { font-size: 0.9rem; color: var(--color-muted); margin-bottom: 0.8rem; }
+.entry-bullets { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.entry-bullets li { font-size: 0.9rem; color: var(--color-muted); line-height: 1.65; padding-left: 1rem; position: relative; }
+.entry-bullets li::before { content:'›'; position: absolute; left: 0; color: var(--color-accent); font-weight: 700; }
+
+.skills-table { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.75rem; overflow: hidden; }
+.skill-row {
+  display: grid; grid-template-columns: 170px 1fr; gap: 1rem;
+  padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--color-border);
+  transition: background 0.15s;
+}
+.skill-row:last-child { border-bottom: none; }
+.skill-row:hover { background: var(--color-surface2); }
+.skill-cat   { font-size: 0.82rem; font-weight: 700; color: var(--color-accent); }
+.skill-items { font-size: 0.9rem;  color: var(--color-muted); line-height: 1.5; }
+
+.interests { display: flex; flex-wrap: wrap; gap: 0.6rem; padding-bottom: 2rem; }
+
+@media (max-width: 560px) {
+  .entry-card { grid-template-columns: 1fr; }
+  .skill-row  { grid-template-columns: 1fr; }
+}
+</style>

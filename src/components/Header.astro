@@ -1,0 +1,205 @@
+---
+// Header — top nav, GoFolium dark style + Indrajeet Patil top layout
+---
+
+<header class="site-header">
+  <div class="hdr-inner container">
+
+    <a href="/" class="brand" aria-label="Home">
+      Prithvi Rajan <span class="brand-dot accent">.</span>
+    </a>
+
+    <nav class="desk-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link" data-path="/">Home</a>
+      <a href="/journey" class="nav-link" data-path="/journey">Journey</a>
+      <a href="/publications" class="nav-link" data-path="/publications">Publications</a>
+      <a href="/projects" class="nav-link" data-path="/projects">Projects</a>
+    </nav>
+
+    <div class="hdr-controls">
+      <button id="dark-toggle" class="icon-btn" aria-label="Toggle light/dark mode">
+        <!-- Sun icon (shown when dark, to switch to light) -->
+        <svg id="i-sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <!-- Moon icon (shown when light, to switch to dark) -->
+        <svg id="i-moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <button id="mob-toggle" class="icon-btn mob-only" aria-label="Open menu" aria-expanded="false">
+        <svg id="i-hburg" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="i-close" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mob-menu" class="mob-menu" aria-hidden="true">
+  <a href="/" class="mob-link">Home</a>
+  <a href="/journey" class="mob-link">Journey</a>
+  <a href="/publications" class="mob-link">Publications</a>
+  <a href="/projects" class="mob-link">Projects</a>
+</div>
+
+<style is:global>
+
+.hdr-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+.brand:hover { opacity: 0.75; }
+.brand-dot { font-size: 1.6rem; line-height: 0; vertical-align: -0.1em; color: #22c55e; }
+
+.desk-nav { display: flex; align-items: center; gap: 0.15rem; }
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  padding: 0.4rem 1rem;
+  border-radius: 0.375rem;
+  transition: color 0.15s, background 0.15s;
+  letter-spacing: 0.01em;
+}
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,0.06);
+}
+.nav-link[aria-current="page"] {
+  color: #22c55e;
+  background: rgba(34,197,94,0.1);
+}
+
+.hdr-controls { display: flex; align-items: center; gap: 0.5rem; }
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0.5rem;
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.75);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.icon-btn:hover {
+  color: #22c55e;
+  border-color: #22c55e;
+  background: rgba(34,197,94,0.1);
+}
+
+.mob-only { display: none; }
+
+/* Light mode header overrides — dark text on white bg */
+.light .brand    { color: #111111 !important; }
+.light .nav-link { color: rgba(0,0,0,0.65) !important; }
+.light .nav-link:hover { color: #111111 !important; background: rgba(0,0,0,0.06) !important; }
+.light .nav-link[aria-current="page"] { color: #16a34a !important; background: rgba(22,163,74,0.1) !important; }
+.light .icon-btn { border-color: rgba(0,0,0,0.18) !important; background: rgba(0,0,0,0.04) !important; color: rgba(0,0,0,0.65) !important; }
+.light .icon-btn:hover { color: #16a34a !important; border-color: #16a34a !important; background: rgba(22,163,74,0.08) !important; }
+.light .site-header { background: #ffffff !important; border-bottom-color: #e4e4e7 !important; }
+
+.mob-menu {
+  position: fixed;
+  top: var(--header-height);
+  left: 0; right: 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.5rem 2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 49;
+  transform: translateY(-110%);
+  transition: transform 0.25s ease;
+}
+.mob-menu.open { transform: translateY(0); }
+
+.mob-link {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-text);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: color 0.15s;
+}
+.mob-link:last-child { border-bottom: none; }
+.mob-link:hover { color: var(--color-accent); }
+
+@media (max-width: 640px) {
+  .desk-nav { display: none; }
+  .mob-only  { display: flex; }
+}
+</style>
+
+<script is:inline>
+  function syncHeaderIcons() {
+    var isLight = document.documentElement.classList.contains('light');
+    var sun  = document.getElementById('i-sun');
+    var moon = document.getElementById('i-moon');
+    // In dark mode: show sun (click → go light)
+    // In light mode: show moon (click → go dark)
+    if (sun)  sun.style.display  = isLight ? 'none'  : 'block';
+    if (moon) moon.style.display = isLight ? 'block' : 'none';
+  }
+
+  function initHeader() {
+    syncHeaderIcons();
+
+    // Dark toggle
+    var btn = document.getElementById('dark-toggle');
+    if (btn) {
+      var fresh = btn.cloneNode(true);
+      btn.parentNode.replaceChild(fresh, btn);
+      document.getElementById('i-sun')  && (document.getElementById('i-sun').style.display  = document.documentElement.classList.contains('light') ? 'none'  : 'block');
+      document.getElementById('i-moon') && (document.getElementById('i-moon').style.display = document.documentElement.classList.contains('light') ? 'block' : 'none');
+      fresh.addEventListener('click', function() {
+        var nowLight = document.documentElement.classList.toggle('light');
+        localStorage.setItem('theme', nowLight ? 'light' : 'dark');
+        syncHeaderIcons();
+      });
+    }
+
+    // Active link
+    var path = window.location.pathname;
+    document.querySelectorAll('.nav-link, .mob-link').forEach(function(link) {
+      var href = link.getAttribute('href');
+      var active = (href === '/' && path === '/') ||
+                   (href !== '/' && path.startsWith(href));
+      if (active) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+
+    // Mobile menu
+    var mobBtn  = document.getElementById('mob-toggle');
+    var mobMenu = document.getElementById('mob-menu');
+    if (mobBtn && mobMenu) {
+      var mFresh = mobBtn.cloneNode(true);
+      mobBtn.parentNode.replaceChild(mFresh, mobBtn);
+      mFresh.addEventListener('click', function() {
+        var open = mobMenu.classList.toggle('open');
+        mFresh.setAttribute('aria-expanded', String(open));
+        var hb = document.getElementById('i-hburg');
+        var ic = document.getElementById('i-close');
+        if (hb) hb.style.display = open ? 'none'  : 'block';
+        if (ic) ic.style.display = open ? 'block' : 'none';
+      });
+    }
+  }
+
+  document.addEventListener('astro:page-load', initHeader);
+  initHeader();
+</script>

@@ -1,17 +1,220 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const skills = [
+  'Python','R','SQL / PL/SQL','Power BI','Oracle 11g/19c',
+  'IBM DB2','ETL Pipelines','Git','ESMFold','GNINA',
+  'AutoDock Vina','Machine Learning','Linux / AIX','Docker',
+];
+
+const experience = [
+  { period:'Jan – Jul 2024', role:'Data Analyst', org:'Accenture · Kaiser Permanente',
+    bullets:['Analyzed 100,000+ hospital admission & claims records to surface patient behavior trends.',
+             'Built Power BI dashboards improving data-driven decision-making for outreach programs.',
+             'Engineered SQL pipelines that cut report turnaround by 30%.'] },
+  { period:'Dec 2021 – Jan 2024', role:'Oracle Database Administrator', org:'Accenture · Kaiser Permanente',
+    bullets:['Led Oracle 11g → 19c migration with 100% data integrity and zero downtime.',
+             'Reduced average application latency by 20% through SQL optimization.',
+             'Implemented Oracle Data Guard for 24/7 disaster recovery.'] },
+  { period:'Feb – Sept 2021', role:'IBM DB2 Database Administrator', org:'Accenture · Kaiser Permanente',
+    bullets:['Managed high-volume IBM DB2 databases for performance, reliability, and security.',
+             'Designed normalized schemas and performance-optimized indexes.'] },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Prithvi Rajan — Data Scientist & Bioinformatician">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-name">Hey, I'm Prithvi Rajan <span class="accent">!</span></h1>
+      <p class="hero-role">A Data Scientist &amp; Bioinformatics Researcher</p>
+      
+      <div class="hero-social">
+        <a href="https://www.linkedin.com/in/prithvi-rajan-925879256/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/prithvirajanR" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:prithvi.rajan300@gmail.com" class="social-btn" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+
+      <div class="bio-block">
+        <div class="bio-text">
+          <p>Hey, I'm Prithvi! 👋 I'm a <strong>data and database specialist</strong> currently based in Berlin.</p>
+          <p>For the past three years, I've been managing large-scale <strong>healthcare data systems</strong>, getting pretty hands-on with <strong class="accent">Oracle</strong>, <strong class="accent">IBM DB2</strong>, and tweaking <strong class="accent">SQL</strong>. I've also spent the last several months getting deeper into the analytics side, using <strong class="accent">Python</strong> to clean up datasets, build practical dashboards, and automate complex workflows.</p>
+          <p>Right now, I'm pursuing my <strong>Master's in Bioinformatics</strong> at <strong class="accent">Freie Universität Berlin</strong> to bridge my tech background with the life sciences. I focus heavily on <strong>computational biology</strong> and <strong>structural bioinformatics</strong>. This involves working with tools like <strong class="accent">ESMFold</strong>, leveraging molecular docking pipelines like <strong class="accent">GNINA</strong> and <strong class="accent">AutoDock Vina</strong>, and applying <strong>machine learning algorithms</strong> to biological data. My main goal right now is building scalable, data-driven applications that help accelerate research and drug discovery.</p>
+          <p>When I'm away from the keyboard, I'm usually gaming, playing badminton, or tinkering with new tech.</p>
+        </div>
+        <img src="/prof_pic.jpg" alt="Prithvi Rajan" class="bio-photo" loading="eager" />
+      </div>
+      
+      <a href="/Prithivi_Rajan_CV.pdf" target="_blank" rel="noopener" class="btn btn-solid hero-cv">Download CV</a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="skills-wrap">
+        {skills.map(s => <span class="tag">{s}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-hdr">
+        <h2 class="section-title" style="margin-bottom:0">Experience</h2>
+        <a href="/journey" class="more-link">View full journey →</a>
+      </div>
+      <div class="exp-list">
+        {experience.map(e => (
+          <article class="exp-card will-animate">
+            <div class="exp-meta">
+              <span class="exp-period">{e.period}</span>
+            </div>
+            <div class="exp-body">
+              <h3 class="exp-role">{e.role}</h3>
+              <p class="exp-org">{e.org}</p>
+              <ul class="exp-bullets">
+                {e.bullets.map(b => <li>{b}</li>)}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+/* HERO */
+.hero {
+  min-height: 80vh;
+  padding: 6rem 0 4rem;
+}
+.hero-name {
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+.hero-role {
+  font-size: 1.5rem;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+}
+.hero-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 3.5rem;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-muted);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.social-btn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: var(--color-tag-bg);
+}
+.hero-cv { 
+  font-size: 0.95rem; 
+  padding: 0.6rem 1.5rem; 
+  margin-top: 1rem;
+}
+
+/* BIO BLOCK (GoFolium style layout) */
+.bio-block {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2.5rem;
+  align-items: stretch;
+  margin-bottom: 2rem;
+}
+.bio-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+.bio-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  color: var(--color-muted);
+  line-height: 1.85;
+}
+.bio-text p {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+}
+
+/* SECTION HEADER */
+.section-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.more-link {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  transition: opacity 0.15s;
+}
+.more-link:hover { opacity: 0.75; }
+
+/* SKILLS */
+.skills-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+/* EXPERIENCE */
+.exp-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.exp-card {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0 1.5rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.exp-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 24px rgba(34,197,94,0.1);
+  transform: translateY(-2px);
+}
+.exp-period { font-size: 0.8rem; font-weight: 600; color: var(--color-muted); display: block; padding-top: 3px; }
+.exp-role { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
+.exp-org  { font-size: 0.9rem; color: var(--color-muted); margin-bottom: 0.8rem; }
+.exp-bullets { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.exp-bullets li { font-size: 0.925rem; color: var(--color-muted); line-height: 1.65; padding-left: 1rem; position: relative; }
+.exp-bullets li::before { content:'›'; position: absolute; left: 0; color: var(--color-accent); font-weight: 700; }
+
+/* PUB LIST */
+.pub-list { display: flex; flex-direction: column; gap: 1.1rem; }
+.empty { color: var(--color-muted); font-style: italic; }
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .bio-block   { display: flex; flex-direction: column-reverse; }
+  .bio-photo   { width: 100%; height: 300px; }
+  .exp-card    { grid-template-columns: 1fr; }
+}
+</style>
