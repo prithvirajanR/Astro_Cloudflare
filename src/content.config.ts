@@ -38,6 +38,8 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     github: z.string().url(),
     repo: z.string(),
+    heroImage: z.string(),
+    heroAlt: z.string(),
     readingTime: z.string().default('6 min read'),
     featured: z.boolean().default(false),
     order: z.number().default(99),

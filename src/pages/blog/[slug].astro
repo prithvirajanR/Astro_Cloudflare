@@ -36,6 +36,10 @@ const formattedDate = post.data.date.toLocaleDateString('en', {
       </div>
     </header>
 
+    <figure class="article-hero">
+      <img src={post.data.heroImage} alt={post.data.heroAlt} />
+    </figure>
+
     <div class="article-content">
       <Content />
     </div>
@@ -57,9 +61,7 @@ const formattedDate = post.data.date.toLocaleDateString('en', {
 }
 
 .article-header {
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 2rem;
-  margin-bottom: 2rem;
+  padding-bottom: 1.8rem;
 }
 
 .article-header h1 {
@@ -93,6 +95,21 @@ const formattedDate = post.data.date.toLocaleDateString('en', {
   flex-wrap: wrap;
   gap: 0.4rem;
   margin-top: 1.2rem;
+}
+
+.article-hero {
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--color-surface);
+  margin: 0 0 2.3rem;
+}
+
+.article-hero img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .article-content {
@@ -138,6 +155,15 @@ const formattedDate = post.data.date.toLocaleDateString('en', {
   padding-left: 1rem;
   margin: 1.4rem 0;
   color: var(--color-muted);
+}
+
+.article-content :global(img) {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  margin: 1.4rem 0;
+  background: var(--color-surface);
 }
 
 .article-content :global(code) {

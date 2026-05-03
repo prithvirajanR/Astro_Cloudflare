@@ -1,10 +1,12 @@
 ---
 title: "StrataDock: Building a Modular Molecular Docking Workstation"
 description: "A practical docking workstation that wraps receptor preparation, ligand handling, pocket selection, Vina/GNINA docking, validation, reporting, and Streamlit UI into one repeatable workflow."
-date: 2026-05-03
+date: 2025-05-01
 tags: ["Molecular Docking", "Streamlit", "Vina", "GNINA", "Drug Discovery"]
 github: "https://github.com/prithvirajanR/StrataDock"
 repo: "StrataDock"
+heroImage: "/blog/stratadock-run.jpg"
+heroAlt: "StrataDock application run screen showing docking configuration and live terminal output"
 readingTime: "7 min read"
 featured: true
 order: 3
@@ -13,6 +15,8 @@ order: 3
 StrataDock was built around a practical frustration: molecular docking workflows are often scattered across scripts, binary installs, manual file preparation, and one-off result folders. The goal was to turn that into a Linux-first docking workstation that a user can run repeatedly.
 
 The app supports the messy real case. A user might have a receptor PDB, a few ligands, no reference ligand, and no polished docking box. StrataDock gives them a structured path from upload to ranked results.
+
+![StrataDock run screen showing docking configuration and terminal progress](/blog/stratadock-run.jpg)
 
 ## What the workflow handles
 
@@ -39,6 +43,8 @@ The repo includes five co-crystal redocking validation systems:
 Each validation case includes receptor files, native ligand files, ligand SDF inputs, docking box coordinates, and acceptance checks such as pose RMSD thresholds, score presence, and pose-file existence.
 
 That validation set is the most important result of the engineering work. It turns StrataDock from a UI wrapper into a workflow with testable behavior.
+
+![StrataDock ADMET and docking result table](/blog/stratadock-admet.jpg)
 
 ## Engineering choices
 

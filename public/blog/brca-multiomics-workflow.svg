@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">BRCA multi-omics workflow</title>
+  <desc id="desc">A workflow connecting clinical metadata, methylation, RNA expression, immune scores, and subtype classification.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" x2="1">
+      <stop offset="0" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <g opacity="0.16" stroke="#22c55e" stroke-width="1">
+    <path d="M88 110 C220 60 310 180 430 132 S680 72 820 160 980 280 1115 210" fill="none"/>
+    <path d="M82 565 C260 460 332 592 512 496 S806 420 1112 510" fill="none"/>
+    <circle cx="988" cy="126" r="88" fill="none"/>
+    <circle cx="188" cy="518" r="68" fill="none"/>
+  </g>
+  <text x="70" y="88" fill="#f8fafc" font-family="Montserrat, Arial, sans-serif" font-size="42" font-weight="800">BRCA Multi-Omics Classifier</text>
+  <text x="72" y="128" fill="#9ca3af" font-family="Inter, Arial, sans-serif" font-size="22">Epigenetic age acceleration + immune context + expression features</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">
+    <g transform="translate(78 214)">
+      <rect width="214" height="118" rx="18" fill="#111827" stroke="#334155"/>
+      <text x="26" y="46" fill="#f8fafc">Clinical metadata</text>
+      <text x="26" y="80" fill="#22c55e" font-size="17">TCGA BRCA samples</text>
+    </g>
+    <g transform="translate(78 392)">
+      <rect width="214" height="118" rx="18" fill="#111827" stroke="#334155"/>
+      <text x="26" y="46" fill="#f8fafc">Methylation clocks</text>
+      <text x="26" y="80" fill="#22c55e" font-size="17">Horvath / Hannum / PhenoAge</text>
+    </g>
+    <g transform="translate(390 214)">
+      <rect width="226" height="118" rx="18" fill="#111827" stroke="#334155"/>
+      <text x="26" y="46" fill="#f8fafc">RNA expression</text>
+      <text x="26" y="80" fill="#22c55e" font-size="17">gene-level features</text>
+    </g>
+    <g transform="translate(390 392)">
+      <rect width="226" height="118" rx="18" fill="#111827" stroke="#334155"/>
+      <text x="26" y="46" fill="#f8fafc">Immune scores</text>
+      <text x="26" y="80" fill="#22c55e" font-size="17">CIBERSORT-style profiles</text>
+    </g>
+    <g transform="translate(718 302)" filter="url(#glow)">
+      <rect width="214" height="132" rx="22" fill="url(#green)"/>
+      <text x="30" y="55" fill="#06120a">Feature matrix</text>
+      <text x="30" y="88" fill="#06120a" font-size="17">aging + immune + omics</text>
+    </g>
+    <g transform="translate(994 302)">
+      <rect width="146" height="132" rx="22" fill="#111827" stroke="#22c55e"/>
+      <text x="30" y="52" fill="#f8fafc">PAM50</text>
+      <text x="30" y="84" fill="#22c55e" font-size="17">subtypes</text>
+    </g>
+  </g>
+  <g stroke="#22c55e" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.85">
+    <path d="M294 273 H360"/>
+    <path d="M294 451 H360"/>
+    <path d="M618 273 C670 273 676 346 718 354"/>
+    <path d="M618 451 C670 451 676 390 718 382"/>
+    <path d="M932 368 H994"/>
+  </g>
+</svg>
