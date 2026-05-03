@@ -1,0 +1,149 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  date: Date;
+  tags?: string[];
+  repo: string;
+  github: string;
+  readingTime?: string;
+  featured?: boolean;
+}
+
+const {
+  title,
+  description,
+  href,
+  date,
+  tags = [],
+  repo,
+  github,
+  readingTime = '6 min read',
+  featured = false,
+} = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class="blog-card will-animate">
+  <div class="blog-topline">
+    <span>{formattedDate}</span>
+    <span>{readingTime}</span>
+    {featured && <span class="blog-badge">Featured</span>}
+  </div>
+
+  <h3 class="blog-title">
+    <a href={href}>{title}</a>
+  </h3>
+
+  <p class="blog-desc">{description}</p>
+
+  {tags.length > 0 && (
+    <div class="blog-tags">
+      {tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+  )}
+
+  <div class="blog-actions">
+    <a href={href} class="pub-btn">Read article</a>
+    <a href={github} target="_blank" rel="noopener" class="pub-btn">Repo: {repo}</a>
+  </div>
+</article>
+
+<style>
+.blog-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-height: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.blog-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 24px rgba(34,197,94,0.12);
+  transform: translateY(-2px);
+}
+
+.blog-topline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.blog-badge {
+  color: var(--color-accent);
+  background: var(--color-tag-bg);
+  border: 1px solid rgba(34,197,94,0.3);
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+}
+
+.blog-title {
+  font-family: var(--font-heading);
+  font-size: 1.18rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.blog-title a {
+  transition: color 0.15s;
+}
+
+.blog-title a:hover {
+  color: var(--color-accent);
+}
+
+.blog-desc {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+
+.blog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.2rem;
+}
+
+.pub-btn {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  border: 1px solid rgba(34,197,94,0.3);
+  padding: 0.35rem 0.85rem;
+  border-radius: 0.35rem;
+  background: var(--color-tag-bg);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  text-decoration: none;
+}
+
+.pub-btn:hover {
+  background: var(--color-accent);
+  color: #000;
+  border-color: var(--color-accent);
+}
+</style>

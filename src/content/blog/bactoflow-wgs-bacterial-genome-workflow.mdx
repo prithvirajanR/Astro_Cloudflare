@@ -1,0 +1,52 @@
+---
+title: "Bactoflow-WGS: A Reproducible Bacterial Genome Analysis Pipeline"
+description: "A Snakemake workflow for bacterial whole-genome sequencing that moves from raw reads to assembly, QC, annotation, screening, pangenome analysis, and phylogeny."
+date: 2026-05-03
+tags: ["Snakemake", "Bacterial WGS", "Genomics", "Reproducibility", "Conda"]
+github: "https://github.com/prithvirajanR/bactoflow-wgs"
+repo: "bactoflow-wgs"
+readingTime: "6 min read"
+featured: true
+order: 4
+---
+
+Bactoflow-WGS is a reproducible Snakemake pipeline for bacterial whole-genome sequencing. It was developed for a mixed bacterial dataset with Klebsiella pneumoniae hybrid assemblies and Escherichia coli short-read assemblies, but the workflow is configurable for other bacterial WGS projects.
+
+The project is useful because it connects many separate bioinformatics tools into one workflow with explicit inputs, environments, and final targets.
+
+## The pipeline design
+
+The workflow starts from a sample sheet and chooses the assembly path based on whether long reads are available.
+
+Samples with long reads go through a hybrid assembly route. Samples without long reads use a short-read assembly route. After assembly, the pipeline moves into polishing, quality control, annotation, screening, comparative genomics, and reporting.
+
+The final targets include:
+
+- MultiQC reports
+- long-read QC summaries
+- QUAST reports
+- BUSCO summaries
+- Bakta annotation GFF3 files
+- optional MLST, AMR, virulence, and plasmid screening outputs
+- a screening summary Excel report
+- core-genome tree files and visualizations
+
+Those outputs make the results reviewable by both command-line users and people who prefer reports and spreadsheets.
+
+## Why Snakemake was the right fit
+
+Snakemake gives the project a clear contract: what files go in, what files come out, and which rule creates each output. Conda environments are split per module, so tools for QC, assembly, annotation, screening, and reporting can be managed separately.
+
+That matters in bacterial genomics because workflows tend to become fragile when every tool is installed into one environment and every sample is handled manually.
+
+## Results and project report
+
+The repo includes a Team 3 project report PDF that discusses workflow design, validation data, assembly quality results, pangenome analysis, phylogeny, and optional screening outputs.
+
+Even though raw FASTQ files and generated results are not tracked in Git, the pipeline records the expected outputs in the Snakefile. That makes the repo understandable without shipping huge data files.
+
+## What I would improve next
+
+The next version could add a small public test dataset and a CI dry-run so new users can verify the workflow immediately. I would also add example rendered reports to the site so the output structure is visible without running the full pipeline.
+
+As a portfolio project, this repo shows reproducible workflow thinking: modular rules, clear configuration, sample-sheet driven execution, and outputs that support both analysis and reporting.

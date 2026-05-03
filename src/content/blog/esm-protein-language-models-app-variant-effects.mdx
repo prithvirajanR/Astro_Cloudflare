@@ -1,0 +1,53 @@
+---
+title: "Using ESM Protein Language Models to Study APP Variant Effects"
+description: "A deep-learning project comparing ESM scoring methods against experimental APP deep mutational scanning data, including epistasis and synthetic fitness landscape analysis."
+date: 2026-05-03
+tags: ["Protein ML", "ESM", "Deep Learning", "PyTorch", "Variant Effects"]
+github: "https://github.com/prithvirajanR/ESM-DeepLearning"
+repo: "ESM-DeepLearning"
+readingTime: "8 min read"
+featured: true
+order: 2
+---
+
+Protein language models are exciting because they learn statistical structure from protein sequences without being explicitly trained on every downstream biological task. This repo tests that promise on a concrete benchmark: mutation-effect prediction for human Amyloid Precursor Protein, also known as APP or A4_HUMAN.
+
+The dataset comes from ProteinGym and contains about 14,483 APP variants from the A4_HUMAN_Seuma_2021 deep mutational scanning assay. That scale made it useful for comparing scoring methods across single variants, double mutants, epistasis, and synthetic landscape exploration.
+
+## What was benchmarked
+
+The repo compares ESM-1v and ESM-2 models with several scoring strategies:
+
+- masked log-likelihood ratio
+- pseudo-log-likelihood
+- embedding distance from wild type
+- entropy-weighted masked scores
+- ensemble-style masked scores
+- mutant marginal probability
+
+This is important because the model itself is only one part of the story. How a mutation is scored can change the ranking of variants dramatically.
+
+## Results worth highlighting
+
+The metrics artifact reports Spearman correlations against experimental scores across 14,483 variants. The strongest runs were in the low-to-mid 0.4 range, which is realistic for this kind of zero-shot protein variant-effect prediction.
+
+Examples from the results file:
+
+- ESM2 650M EnsembleMLLR reached rho = 0.4234 with P100 = 13%.
+- ESM2 650M PLL reached rho = 0.4253 with P100 = 10%.
+- The top predictions.csv summary reached rho = 0.4265 with P100 = 11%.
+- ESM2 650M EntropyMLLR reached rho = 0.4196.
+
+The trend was useful: larger ESM-2 models and stronger scoring formulations generally performed better than simpler baselines, but not every larger-model or more complex method won automatically.
+
+## Beyond a leaderboard
+
+The project also includes epistasis analysis and synthetic fitness landscape exploration. That matters because APP has many double mutants in this benchmark, and double-mutant behavior is often where simple additive assumptions start to fail.
+
+The repo preserves figures, CSV outputs, HPC scripts, and a compiled report. That makes the work easier to review later: the results are not just in console output, but in artifacts that tell the story of the experiment.
+
+## What I learned
+
+The biggest lesson was that protein language models are powerful but not magic. They need careful scoring, careful validation against experimental data, and careful interpretation of what the correlation actually means.
+
+For portfolio purposes, this project is a strong example of applied ML in biology: it has a real dataset, model comparisons, quantitative results, and a biological interpretation layer around epistasis and variant effects.

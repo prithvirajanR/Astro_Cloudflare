@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const formattedDate = post.data.date.toLocaleDateString('en', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout title={`${post.data.title} - Prithvi Rajan`} description={post.data.description}>
+  <article class="container article-shell">
+    <a href="/blog" class="back-link">Back to blog</a>
+
+    <header class="article-header">
+      <div class="article-meta">
+        <span>{formattedDate}</span>
+        <span>{post.data.readingTime}</span>
+        <a href={post.data.github} target="_blank" rel="noopener">{post.data.repo}</a>
+      </div>
+      <h1>{post.data.title}</h1>
+      <p>{post.data.description}</p>
+      <div class="article-tags">
+        {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    </header>
+
+    <div class="article-content">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style>
+.article-shell {
+  max-width: 900px;
+  padding-top: 3rem;
+}
+
+.back-link {
+  display: inline-flex;
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.article-header {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.article-header h1 {
+  margin: 0.5rem 0 1rem;
+}
+
+.article-header p {
+  color: var(--color-muted);
+  font-size: 1.08rem;
+  max-width: 760px;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.article-meta a {
+  color: var(--color-accent);
+}
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+}
+
+.article-content {
+  padding-bottom: 4rem;
+}
+
+.article-content :global(h2) {
+  font-size: 1.55rem;
+  margin: 2.4rem 0 0.75rem;
+}
+
+.article-content :global(h3) {
+  margin: 1.8rem 0 0.45rem;
+}
+
+.article-content :global(p),
+.article-content :global(li) {
+  color: var(--color-text);
+  line-height: 1.85;
+}
+
+.article-content :global(p) {
+  margin: 0.85rem 0;
+}
+
+.article-content :global(ul),
+.article-content :global(ol) {
+  padding-left: 1.4rem;
+  margin: 0.85rem 0 1.1rem;
+}
+
+.article-content :global(li + li) {
+  margin-top: 0.4rem;
+}
+
+.article-content :global(a) {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.article-content :global(blockquote) {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1rem;
+  margin: 1.4rem 0;
+  color: var(--color-muted);
+}
+
+.article-content :global(code) {
+  background: var(--color-surface2);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.3rem;
+}
+</style>

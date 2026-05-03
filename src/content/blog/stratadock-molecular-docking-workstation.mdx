@@ -1,0 +1,53 @@
+---
+title: "StrataDock: Building a Modular Molecular Docking Workstation"
+description: "A practical docking workstation that wraps receptor preparation, ligand handling, pocket selection, Vina/GNINA docking, validation, reporting, and Streamlit UI into one repeatable workflow."
+date: 2026-05-03
+tags: ["Molecular Docking", "Streamlit", "Vina", "GNINA", "Drug Discovery"]
+github: "https://github.com/prithvirajanR/StrataDock"
+repo: "StrataDock"
+readingTime: "7 min read"
+featured: true
+order: 3
+---
+
+StrataDock was built around a practical frustration: molecular docking workflows are often scattered across scripts, binary installs, manual file preparation, and one-off result folders. The goal was to turn that into a Linux-first docking workstation that a user can run repeatedly.
+
+The app supports the messy real case. A user might have a receptor PDB, a few ligands, no reference ligand, and no polished docking box. StrataDock gives them a structured path from upload to ranked results.
+
+## What the workflow handles
+
+The workflow covers receptor cleanup, ligand preparation, binding-site definition, docking, scoring, visualization, and export. It supports AutoDock Vina by default and GNINA as an optional CPU/CUDA path.
+
+Binding-site setup is deliberately flexible:
+
+- reference ligand mode for redocking and known binding sites
+- fpocket mode when only a receptor structure is available
+- manual box mode when coordinates are already known
+
+That design makes the app useful beyond a demo dataset, because real docking users often do not start with a perfect co-crystal setup.
+
+## Validation and results
+
+The repo includes five co-crystal redocking validation systems:
+
+- HIV protease, 1HSG
+- EGFR kinase, 1M17
+- ABL kinase, 1IEP
+- trypsin, 3PTB
+- HSV thymidine kinase, 1KIM
+
+Each validation case includes receptor files, native ligand files, ligand SDF inputs, docking box coordinates, and acceptance checks such as pose RMSD thresholds, score presence, and pose-file existence.
+
+That validation set is the most important result of the engineering work. It turns StrataDock from a UI wrapper into a workflow with testable behavior.
+
+## Engineering choices
+
+The repo is split into core modules for docking, reports, pockets, receptors, ligands, sessions, and visualization. The Streamlit app is large, but the important logic lives in reusable modules under `src/stratadock/core`.
+
+The test suite covers ADMET-style profiles, batch runs, binding boxes, diagnostics, GNINA handling, pocket prediction, receptor and ligand preparation, reports, sessions, UI tables, and validation data.
+
+## Why this is portfolio-worthy
+
+This project shows a different kind of bioinformatics skill: not just running an analysis, but building an actual tool. It combines scientific domain logic, workflow ergonomics, UI design, validation data, and reproducible exports.
+
+For a future version, I would keep simplifying the Streamlit app into smaller panels and add more visual regression checks around the UI. The core direction is solid: make docking practical, repeatable, and inspectable.

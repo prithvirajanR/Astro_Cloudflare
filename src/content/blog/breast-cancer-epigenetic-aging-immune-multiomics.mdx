@@ -1,0 +1,44 @@
+---
+title: "Classifying Breast Cancer Subtypes with Epigenetic Aging and Immune Multi-Omics"
+description: "A project story about combining DNA methylation clocks, immune deconvolution, RNA expression, and methylation features to study PAM50 breast cancer subtype classification."
+date: 2026-05-03
+tags: ["Multi-Omics", "Breast Cancer", "Machine Learning", "R", "Python"]
+github: "https://github.com/prithvirajanR/breast-cancer-epigenetic-aging-immune-multiomics-classification"
+repo: "BRCA multi-omics"
+readingTime: "7 min read"
+featured: true
+order: 1
+---
+
+This repo began as a group project around a deceptively simple question: can aging-related methylation signals and immune context help distinguish molecular breast cancer subtypes?
+
+The project focuses on TCGA BRCA samples and PAM50 subtype labels, especially Basal, Luminal A, and Luminal B. Instead of treating subtype classification as a single-table machine learning task, we built a multi-step workflow that prepares clinical metadata, RNA expression, DNA methylation, epigenetic age acceleration, immune scores, and subtype labels before modeling.
+
+## Why epigenetic age mattered
+
+DNA methylation clocks estimate biological age from methylation patterns. The interesting feature for cancer is not simply the predicted age, but the difference between methylation age and chronological age. That delta can reveal whether a tumor looks biologically older or younger than expected.
+
+The statistical report compared Horvath, Hannum, and PhenoAge clocks across subtype groups. The main pattern in the report was subtype-specific: Luminal tumors showed positive age acceleration across clocks, while Basal tumors clustered closer to zero or negative delta-age. Hannum had the strongest overall fit in the downstream linear model, with the report noting an approximate R-squared around 0.30.
+
+## Adding immune context
+
+The immune analysis connected delta-age patterns to tumor immune composition. The annotation report compared immune cell scores against delta Hannum age and subtype labels, then brought those features into model interpretation.
+
+Two findings made the project more biologically interesting:
+
+- Resting mast cells and M0 macrophages appeared as strong delta-age correlates, suggesting an innate or wound-healing-like immune profile in age-accelerated tumors.
+- Follicular helper T cells and macrophage patterns helped separate Luminal and Basal signals, while SHAP-style feature importance highlighted immune features that also mattered to subtype decisions.
+
+Those results made the project less about chasing classifier accuracy alone and more about asking whether model features made biological sense.
+
+## What the pipeline produced
+
+The notebooks cover the full workflow: metadata cleaning, RNA preprocessing, methylation preprocessing, delta-age calculation, immune score integration, multiclass classification, and annotation. The repo also includes two report artifacts: an epigenetic age statistical analysis PDF and an annotation PDF.
+
+The result is a project that can be explained as both a reproducible analysis and a biological story. The modeling task is subtype classification, but the value is in how the features connect aging, immune state, and breast cancer subtype biology.
+
+## What I would improve next
+
+The next step would be to harden the workflow for reuse: replace absolute paths in the R Markdown reports, add a single configuration file for data locations, and make the model evaluation outputs easier to regenerate from a clean checkout.
+
+Still, as a portfolio project, this repo shows the most important pattern: start with a biological question, build the data layers carefully, and use model interpretation to return to the biology.
