@@ -25,8 +25,9 @@ const skills = [
 
 const affiliations = [
   { name: 'Freie Universitaet Berlin', detail: 'M.Sc. Bioinformatics', mark: 'FU Berlin', tone: 'blue' },
-  { name: 'Charite - Universitaetsmedizin Berlin', detail: 'Biomedical data and clinical research context', mark: 'CHARITE', tone: 'blue' },
-  { name: 'Max Planck Institute for Infection Biology', detail: 'Research workflows and reproducible analysis', mark: 'MPIIB', tone: 'green' },
+  { name: 'Kaiser Permanente', detail: 'Healthcare data systems and analytics', mark: 'Kaiser', tone: 'blue' },
+  { name: 'Accenture', detail: 'Data analysis and database administration', mark: 'Accenture', tone: 'purple' },
+  { name: 'Karunya University', detail: 'B.Tech Biotechnology foundation', mark: 'Karunya', tone: 'green' },
 ];
 
 const timeline = [
@@ -399,8 +400,8 @@ const places = [
 
 .affiliation-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.35rem;
 }
 
 .affiliation-card {
@@ -426,6 +427,10 @@ const places = [
 
 .affiliation-card.green .affiliation-mark {
   color: oklch(0.42 0.15 156);
+}
+
+.affiliation-card.purple .affiliation-mark {
+  color: oklch(0.38 0.17 300);
 }
 
 .affiliation-card p {
