@@ -220,10 +220,6 @@ const places = [
   font-weight: 850;
   letter-spacing: -0.04em;
   margin-bottom: 0.2rem;
-  background: linear-gradient(135deg, var(--color-accent) 20%, var(--color-secondary) 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 45px rgba(var(--color-accent-rgb), 0.12);
 }
 
 .hero-subtitle {
@@ -323,14 +319,8 @@ const places = [
   border-radius: 16px;
   object-fit: cover;
   object-position: center 36%;
-  border: 1.5px solid rgba(var(--color-accent-rgb), 0.3);
-  box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb), 0.05), var(--shadow-card);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.profile-photo:hover {
-  border-color: var(--color-secondary);
-  box-shadow: 0 0 0 6px rgba(var(--color-secondary-rgb), 0.1), 0 12px 35px rgba(var(--color-secondary-rgb), 0.2);
-  transform: translateY(-2px) scale(1.02);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
 }
 
 .interests-panel {
@@ -404,12 +394,10 @@ const places = [
   border-radius: 12px;
   box-shadow: var(--shadow-card);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 .affiliation-card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-4px) scale(1.03);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-card-hover);
 }
 .affiliation-card img {
@@ -460,8 +448,8 @@ const places = [
   bottom: 0.8rem;
   left: 0.44rem;
   width: 2px;
-  background: linear-gradient(to bottom, var(--color-accent), var(--color-secondary));
-  opacity: 0.5;
+  background: var(--color-border);
+  transition: background 0.25s;
 }
 
 .timeline-item {
@@ -481,19 +469,18 @@ const places = [
   position: absolute;
   top: 0.35rem;
   left: -1.8rem;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--color-bg);
   border: 3px solid var(--color-accent);
-  box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.4);
+  box-shadow: 0 0 0 3px var(--color-secondary-soft);
   z-index: 2;
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s;
 }
 .timeline-item:hover::before {
-  border-color: var(--color-secondary);
-  box-shadow: 0 0 15px rgba(var(--color-secondary-rgb), 0.7);
-  transform: scale(1.25);
+  background: var(--color-accent);
+  transform: scale(1.15);
 }
 
 .timeline-item time {
@@ -562,45 +549,38 @@ const places = [
   position: relative;
   min-height: 340px;
   overflow: hidden;
-  background: var(--color-surface);
+  background: var(--color-surface2);
   border-radius: 12px;
   border: 1px solid var(--color-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.3s;
+  transition: background 0.25s, border-color 0.25s;
 }
 
 .signal-map::before {
   content: '';
   position: absolute;
-  inset: 15%;
-  border: 1.5px dashed rgba(var(--color-secondary-rgb), 0.25);
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  animation: morphMolecularRing 25s infinite linear;
-  pointer-events: none;
+  inset: 18%;
+  border: 1.5px dashed rgba(var(--color-accent-rgb), 0.22);
+  border-radius: 50%;
+  transform: rotate(-12deg) scaleX(1.35);
 }
 
 .signal-map::after {
   content: '';
   position: absolute;
-  inset: 25%;
-  border: 1px dashed rgba(var(--color-accent-rgb), 0.2);
-  border-radius: 50%;
-  animation: morphMolecularRing 15s infinite linear reverse;
-  pointer-events: none;
-}
-
-@keyframes morphMolecularRing {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  left: 18%;
+  right: 14%;
+  top: 52%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(var(--color-accent-rgb), 0.35), rgba(var(--color-accent-rgb), 0.05), transparent);
+  transform: rotate(-8deg);
 }
 
 .map-gridlines {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(var(--color-accent-rgb), 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(var(--color-accent-rgb), 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(var(--color-text-rgb), 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--color-text-rgb), 0.02) 1px, transparent 1px);
   background-size: 32px 32px;
   opacity: 0.7;
 }
@@ -620,18 +600,13 @@ const places = [
 }
 
 .map-point span {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: var(--color-accent);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.4);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.22);
   position: relative;
   display: block;
-}
-
-.map-point:nth-child(even) span {
-  background: var(--color-secondary);
-  box-shadow: 0 0 10px rgba(var(--color-secondary-rgb), 0.4);
 }
 
 .map-point span::after {
@@ -640,11 +615,7 @@ const places = [
   inset: -4px;
   border-radius: 50%;
   border: 1px solid var(--color-accent);
-  animation: pulseRing 2s infinite ease-out;
-}
-
-.map-point:nth-child(even) span::after {
-  border-color: var(--color-secondary);
+  animation: pulseRing 1.8s infinite ease-out;
 }
 
 @keyframes pulseRing {

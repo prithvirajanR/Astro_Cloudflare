@@ -112,12 +112,7 @@ const interests = ['Badminton','Gaming','Tech Exploration','Drug Discovery','Str
   color: var(--color-accent);
   margin-bottom: 1rem;
 }
-.page-header h1 {
-  margin-bottom: 0.7rem;
-  background: linear-gradient(135deg, var(--color-accent) 20%, var(--color-secondary) 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+.page-header h1 { margin-bottom: 0.7rem; }
 .page-sub {
   max-width: 760px;
   font-size: 0.98rem;
@@ -148,13 +143,11 @@ const interests = ['Badminton','Gaming','Tech Exploration','Drug Discovery','Str
   padding: 1.6rem 1.8rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: var(--shadow-card);
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 .entry-card::before {
   content: '';
@@ -163,13 +156,13 @@ const interests = ['Badminton','Gaming','Tech Exploration','Drug Discovery','Str
   bottom: 0;
   left: 0;
   width: 4px;
-  background: linear-gradient(to bottom, var(--color-accent), var(--color-secondary));
+  background: var(--color-accent);
   opacity: 0;
-  transition: opacity 0.28s ease;
+  transition: opacity 0.2s ease;
 }
 .entry-card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-card-hover);
 }
 .entry-card:hover::before {
@@ -233,16 +226,14 @@ const interests = ['Badminton','Gaming','Tech Exploration','Drug Discovery','Str
 .skill-group-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 1.5rem;
   box-shadow: var(--shadow-card);
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .skill-group-card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-card-hover);
 }
 .skill-group-title {

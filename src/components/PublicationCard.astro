@@ -48,16 +48,14 @@ const { year, title, authors, journal, doi, paper_url, code_url, abstract, featu
 .pub-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow-card);
   transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 .pub-card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
 }
 .pub-inner { 
@@ -159,8 +157,7 @@ const { year, title, authors, journal, doi, paper_url, code_url, abstract, featu
   background: var(--color-tag-bg);
   border-color: var(--color-accent);
   color: var(--color-accent);
-  box-shadow: 0 4px 10px rgba(var(--color-accent-rgb), 0.08);
-  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(var(--color-accent-rgb), 0.08);
 }
 
 @media (max-width: 600px) {
