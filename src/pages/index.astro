@@ -24,10 +24,30 @@ const skills = [
 ];
 
 const affiliations = [
-  { name: 'Freie Universitaet Berlin', detail: 'M.Sc. Bioinformatics', mark: 'FU Berlin', tone: 'blue' },
-  { name: 'Kaiser Permanente', detail: 'Healthcare data systems and analytics', mark: 'Kaiser', tone: 'blue' },
-  { name: 'Accenture', detail: 'Data analysis and database administration', mark: 'Accenture', tone: 'purple' },
-  { name: 'Karunya University', detail: 'B.Tech Biotechnology foundation', mark: 'Karunya', tone: 'green' },
+  {
+    name: 'Freie Universitaet Berlin',
+    detail: 'M.Sc. Bioinformatics',
+    logo: '/logos/fu-berlin.svg',
+    logoClass: 'logo-mark logo-fu',
+  },
+  {
+    name: 'Kaiser Permanente',
+    detail: 'Healthcare data systems and analytics',
+    logo: '/logos/kaiser-permanente.svg',
+    logoClass: 'logo-mark logo-kaiser',
+  },
+  {
+    name: 'Accenture',
+    detail: 'Data analysis and database administration',
+    logo: '/logos/accenture.svg',
+    logoClass: 'logo-mark logo-accenture',
+  },
+  {
+    name: 'Karunya University',
+    detail: 'B.Tech Biotechnology foundation',
+    logo: '/logos/karunya.png',
+    logoClass: 'logo-mark logo-karunya',
+  },
 ];
 
 const timeline = [
@@ -126,12 +146,12 @@ const places = [
   </section>
 
   <section class="affiliation-section">
-    <div class="container affiliation-grid">
+    <div class="container-wide affiliation-grid">
       {affiliations.map(item => (
-        <article class={`affiliation-card ${item.tone} will-animate`}>
-          <div class="affiliation-mark">{item.mark}</div>
-          <p>{item.name}</p>
-          <span>{item.detail}</span>
+        <article class="affiliation-card will-animate">
+          <div class="affiliation-logo">
+            <img src={item.logo} alt={`${item.name} logo`} class={item.logoClass} loading="lazy" />
+          </div>
         </article>
       ))}
     </div>
@@ -400,47 +420,56 @@ const places = [
 
 .affiliation-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.35rem;
+  grid-template-columns: repeat(4, minmax(210px, 1fr));
+  gap: 0.95rem;
 }
 
 .affiliation-card {
-  min-height: 188px;
-  padding: 1.35rem 1.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 122px;
+  padding: 1.25rem;
   background: white;
   border: 1px solid var(--color-border);
   border-radius: 3px;
+  text-align: center;
 }
 
-.affiliation-mark {
+.affiliation-logo {
   display: flex;
   align-items: center;
-  min-height: 62px;
-  color: oklch(0.33 0.14 252);
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  border-bottom: 1px solid var(--color-border);
-  margin-bottom: 1.25rem;
+  justify-content: center;
+  width: 100%;
+  height: 72px;
 }
 
-.affiliation-card.green .affiliation-mark {
-  color: oklch(0.42 0.15 156);
+.affiliation-logo img {
+  display: block;
+  width: var(--logo-width, 190px);
+  height: var(--logo-height, 52px);
+  max-width: min(100%, var(--logo-width, 190px));
+  object-fit: contain;
 }
 
-.affiliation-card.purple .affiliation-mark {
-  color: oklch(0.38 0.17 300);
+.affiliation-logo .logo-fu {
+  --logo-width: 190px;
+  --logo-height: 54px;
 }
 
-.affiliation-card p {
-  font-size: 0.98rem;
-  margin-bottom: 0.15rem;
+.affiliation-logo .logo-kaiser {
+  --logo-width: 250px;
+  --logo-height: 50px;
 }
 
-.affiliation-card span {
-  color: oklch(0.32 0.045 245);
-  font-size: 0.92rem;
+.affiliation-logo .logo-accenture {
+  --logo-width: 206px;
+  --logo-height: 50px;
+}
+
+.affiliation-logo .logo-karunya {
+  --logo-width: 198px;
+  --logo-height: 54px;
 }
 
 .section-head {
@@ -629,7 +658,7 @@ const places = [
   }
 
   .affiliation-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -654,6 +683,12 @@ const places = [
 
   .signal-map {
     min-height: 300px;
+  }
+}
+
+@media (max-width: 520px) {
+  .affiliation-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
