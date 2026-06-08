@@ -15,16 +15,12 @@ const { year, title, authors, journal, doi, paper_url, code_url, abstract, featu
 
 <article class="pub-card will-animate">
   <div class="pub-inner">
-    <div class="pub-date-block">
-      <span class="pub-year-num">{year}</span>
-      <span class="pub-year-label">PUBLISHED</span>
-    </div>
-    
     <div class="pub-main">
-      <div class="pub-header">
-        <h3 class="pub-title">{title}</h3>
+      <div class="pub-meta">
+        <span class="pub-year">{year}</span>
         {featured && <span class="pub-badge">Featured</span>}
       </div>
+      <h3 class="pub-title">{title}</h3>
       <p class="pub-authors">{authors.join(', ')}</p>
       <p class="pub-journal"><em>{journal}</em></p>
 
@@ -48,82 +44,32 @@ const { year, title, authors, journal, doi, paper_url, code_url, abstract, featu
 .pub-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .pub-card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
 }
-.pub-inner { 
-  display: flex; 
-  min-height: 140px;
-}
-.pub-date-block {
-  width: 110px;
-  background: var(--color-surface2);
-  border-right: 1px solid var(--color-border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-family: var(--font-mono);
-  padding: 1rem;
-  transition: background 0.25s, border-color 0.25s;
-}
-.pub-year-num {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--color-accent);
-  line-height: 1.1;
-}
-.pub-year-label {
-  font-size: 0.65rem;
-  letter-spacing: 0.06em;
-  font-weight: 700;
-  color: var(--color-muted);
-  margin-top: 0.2rem;
-}
-.pub-main { 
-  padding: 1.4rem; 
-  flex: 1; 
-  display: flex; 
-  flex-direction: column; 
-  gap: 0.55rem; 
-}
+.pub-inner { display: flex; }
+.pub-main  { padding: 1.05rem 1.1rem 1.15rem; flex: 1; display: flex; flex-direction: column; gap: 0.55rem; }
 
-.pub-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
+.pub-meta  { display: flex; align-items: center; gap: 0.6rem; }
+.pub-year  { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: var(--color-muted); text-transform: uppercase; }
 .pub-badge {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-tag-text);
-  background: var(--color-tag-bg);
-  border: 1px solid rgba(var(--color-accent-rgb), 0.15);
-  padding: 0.15rem 0.55rem;
-  border-radius: 99px;
-  white-space: nowrap;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--color-accent);
 }
 
-.pub-title   { font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; line-height: 1.25; }
-.pub-authors { font-size: 0.93rem; color: var(--color-muted); line-height: 1.55; }
-.pub-journal { font-size: 0.9rem; color: var(--color-muted); font-family: var(--font-sans); }
+.pub-title   { font-family: var(--font-heading); font-size: 1rem; font-weight: 800; line-height: 1.3; }
+.pub-authors { font-size: 0.94rem; color: var(--color-muted); line-height: 1.58; }
+.pub-journal { font-size: 0.92rem; color: var(--color-muted); font-family: var(--font-sans); }
 
 .abstract-block {
-  border-left: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-border);
   padding-left: 0.85rem;
-  margin-block: 0.2rem;
 }
 .abstract-block summary {
   font-size: 0.82rem; font-weight: 600;
@@ -132,52 +78,23 @@ const { year, title, authors, journal, doi, paper_url, code_url, abstract, featu
 .abstract-block summary::-webkit-details-marker { display: none; }
 .abstract-block summary::before { content: '▸ '; color: var(--color-accent); }
 .abstract-block[open] summary::before { content: '▾ '; }
-.abstract-text { margin-top: 0.4rem; font-size: 0.875rem; color: var(--color-muted); line-height: 1.58; }
+.abstract-text { margin-top: 0.5rem; font-size: 0.875rem; color: var(--color-muted); line-height: 1.58; }
 
-.pub-btns { 
-  display: flex; 
-  gap: 0.65rem; 
-  flex-wrap: wrap; 
-  margin-top: auto;
-  padding-top: 0.4rem;
-}
+.pub-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.25rem; }
 .pub-btn {
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.8rem; font-weight: 600;
   color: var(--color-accent);
-  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
-  padding: 0.4rem 0.95rem;
-  border-radius: 99px;
+  border: none;
+  border-bottom: 1px solid currentColor;
+  padding: 0;
+  border-radius: 0;
   background: transparent;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
   text-decoration: none;
-  line-height: 1;
 }
 .pub-btn:hover {
-  background: var(--color-tag-bg);
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  box-shadow: 0 3px 8px rgba(var(--color-accent-rgb), 0.08);
-}
-
-@media (max-width: 600px) {
-  .pub-inner {
-    flex-direction: column;
-  }
-  .pub-date-block {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--color-border);
-    flex-direction: row;
-    gap: 0.6rem;
-    padding: 0.75rem 1.4rem;
-    justify-content: flex-start;
-  }
-  .pub-year-num {
-    font-size: 1.35rem;
-  }
-  .pub-year-label {
-    margin-top: 0;
-  }
+  background: transparent;
+  color: var(--color-accent2);
+  border-color: currentColor;
 }
 </style>

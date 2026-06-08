@@ -9,7 +9,7 @@ interface Props {
   demo?: string;
   featured?: boolean;
 }
-const { title, description, tags = [], image, imageAlt, github, demo, featured } = Astro.props;
+const { title, description, tags = [], image, imageAlt, github, demo } = Astro.props;
 ---
 
 <article class="proj-card will-animate">
@@ -18,23 +18,13 @@ const { title, description, tags = [], image, imageAlt, github, demo, featured }
       <img src={image} alt={imageAlt || `${title} project visual`} loading="lazy" />
     ) : (
       <div class="proj-media-fallback" aria-hidden="true">
-        <div class="fallback-chart">
-          <div class="chart-grid"></div>
-          <span style="height: 35%"></span>
-          <span style="height: 65%"></span>
-          <span style="height: 50%"></span>
-          <span style="height: 85%"></span>
-          <span style="height: 40%"></span>
-        </div>
+        <span></span><span></span><span></span>
       </div>
     )}
   </div>
 
   <div class="proj-body">
-    <div class="proj-header">
-      <h3 class="proj-title">{title}</h3>
-      {featured && <span class="proj-badge">Featured</span>}
-    </div>
+    <h3 class="proj-title">{title}</h3>
     <p class="proj-desc">{description}</p>
     {tags.length > 0 && (
       <div class="proj-tags">
@@ -54,147 +44,96 @@ const { title, description, tags = [], image, imageAlt, github, demo, featured }
 .proj-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: 4px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-card);
-  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .proj-card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
 }
 .proj-media {
   aspect-ratio: 16 / 9;
   background: var(--color-surface2);
   border-bottom: 1px solid var(--color-border);
   overflow: hidden;
-  position: relative;
 }
 .proj-media img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 0.65rem;
   background: #ffffff;
 }
 .proj-media-fallback {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-surface2);
-  position: relative;
-  overflow: hidden;
-}
-.fallback-chart {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: end;
-  justify-content: center;
-  gap: 0.6rem;
-  width: 70%;
-  height: 60%;
-  position: relative;
+  gap: 0.7rem;
+  padding: 2rem;
+  background: var(--color-surface2);
 }
-.chart-grid {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(var(--color-accent-rgb), 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(var(--color-accent-rgb), 0.05) 1px, transparent 1px);
-  background-size: 16px 16px;
-}
-.fallback-chart span {
+.proj-media-fallback span {
   display: block;
-  width: 14px;
-  border-radius: 4px 4px 0 0;
-  background: var(--color-border);
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s;
+  background: var(--color-accent);
 }
-.proj-card:hover .fallback-chart span {
-  filter: brightness(1.05);
-}
-.fallback-chart span:nth-child(2) { background: var(--color-accent); animation: pulseHeight 3s infinite ease-in-out alternate; }
-.fallback-chart span:nth-child(3) { background: var(--color-secondary); animation: pulseHeight 2.4s infinite ease-in-out alternate-reverse; }
-.fallback-chart span:nth-child(4) { background: var(--color-muted); opacity: 0.4; }
-.fallback-chart span:nth-child(5) { background: var(--color-accent); animation: pulseHeight 3.5s infinite ease-in-out alternate; animation-delay: 0.5s; }
-.fallback-chart span:nth-child(6) { background: var(--color-secondary); }
-
-@keyframes pulseHeight {
-  from { transform: scaleY(1); }
-  to { transform: scaleY(0.85); }
-}
-
+.proj-media-fallback span:nth-child(1) { height: 42%; }
+.proj-media-fallback span:nth-child(2) { height: 72%; background: var(--color-secondary); }
+.proj-media-fallback span:nth-child(3) { height: 54%; background: var(--color-text); }
 .proj-body {
-  padding: 1.4rem;
+  padding: 1.05rem 1.1rem 1.15rem;
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 0.9rem;
-}
-.proj-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  gap: 0.7rem;
 }
 .proj-title {
   font-family: var(--font-heading);
-  font-size: 1.12rem;
+  font-size: 1rem;
   font-weight: 800;
-  line-height: 1.25;
-}
-.proj-badge {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-tag-text);
-  background: var(--color-tag-bg);
-  border: 1px solid rgba(var(--color-accent-rgb), 0.15);
-  padding: 0.15rem 0.55rem;
-  border-radius: 99px;
-  white-space: nowrap;
+  line-height: 1.3;
 }
 .proj-desc {
-  font-size: 0.93rem;
+  font-size: 0.94rem;
   color: var(--color-muted);
-  line-height: 1.55;
+  line-height: 1.58;
 }
 .proj-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.4rem 0.85rem;
+}
+.proj-tags .tag::before {
+  content: '#';
+  color: var(--color-accent);
 }
 .proj-btns {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 0.8rem;
   margin-top: auto;
-  padding-top: 0.4rem;
 }
 .pub-btn {
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--color-accent);
-  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
-  padding: 0.4rem 0.95rem;
-  border-radius: 99px;
+  border: none;
+  border-bottom: 1px solid currentColor;
+  padding: 0;
+  border-radius: 0;
   background: transparent;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
   text-decoration: none;
-  line-height: 1;
 }
 .pub-btn:hover {
-  background: var(--color-tag-bg);
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  box-shadow: 0 3px 8px rgba(var(--color-accent-rgb), 0.08);
+  background: transparent;
+  color: var(--color-accent2);
+  border-color: currentColor;
 }
 </style>

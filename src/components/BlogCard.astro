@@ -69,19 +69,18 @@ const formattedDate = date.toLocaleDateString('en', {
 .blog-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: 4px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  box-shadow: var(--shadow-card);
-  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .blog-card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
 }
 
 .blog-media {
@@ -97,19 +96,15 @@ const formattedDate = date.toLocaleDateString('en', {
   height: 100%;
   display: block;
   object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.blog-card:hover .blog-media img {
-  transform: scale(1.03);
+  background: #ffffff;
 }
 
 .blog-body {
-  padding: 1.4rem;
+  padding: 1.05rem 1.1rem 1.15rem;
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 0.7rem;
 }
 
 .blog-topline {
@@ -117,27 +112,25 @@ const formattedDate = date.toLocaleDateString('en', {
   flex-wrap: wrap;
   gap: 0.55rem;
   align-items: center;
-  font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-muted);
 }
 
 .blog-badge {
-  color: var(--color-tag-text);
-  background: var(--color-tag-bg);
-  border: 1px solid rgba(var(--color-accent-rgb), 0.15);
-  border-radius: 99px;
-  padding: 0.12rem 0.5rem;
+  color: var(--color-accent);
+  border: none;
+  padding: 0;
+  font-weight: 700;
 }
 
 .blog-title {
   font-family: var(--font-heading);
-  font-size: 1.12rem;
+  font-size: 1.05rem;
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .blog-title a {
@@ -149,43 +142,47 @@ const formattedDate = date.toLocaleDateString('en', {
 }
 
 .blog-desc {
-  font-size: 0.93rem;
+  font-size: 0.94rem;
   color: var(--color-muted);
-  line-height: 1.55;
+  line-height: 1.58;
 }
 
 .blog-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.4rem 0.85rem;
   margin-top: auto;
   padding-top: 0.25rem;
+}
+
+.blog-tags .tag::before {
+  content: '#';
+  color: var(--color-accent);
 }
 
 .blog-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  padding-top: 0.4rem;
+  gap: 0.8rem;
+  margin-top: 0.25rem;
 }
 
 .pub-btn {
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--color-accent);
-  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
-  padding: 0.4rem 0.95rem;
-  border-radius: 99px;
+  border: none;
+  border-bottom: 1px solid currentColor;
+  padding: 0;
+  border-radius: 0;
   background: transparent;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
   text-decoration: none;
-  line-height: 1;
 }
 
 .pub-btn:hover {
-  background: var(--color-tag-bg);
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  box-shadow: 0 3px 8px rgba(var(--color-accent-rgb), 0.08);
+  background: transparent;
+  color: var(--color-accent2);
+  border-color: currentColor;
 }
 </style>
