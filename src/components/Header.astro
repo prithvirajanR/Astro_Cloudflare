@@ -18,7 +18,7 @@
     </nav>
 
     <div class="header-actions">
-      <button class="theme-dot" aria-label="Theme control" type="button">☼</button>
+      <button class="theme-dot" aria-label="Switch to dark theme" type="button" title="Switch theme">☼</button>
       <button id="mob-toggle" class="icon-btn mob-only" aria-label="Open menu" aria-expanded="false">
         <svg id="i-hburg" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         <svg id="i-close" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -109,15 +109,23 @@
   width: 40px;
   height: 40px;
   color: var(--color-text);
-  background: white;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
 }
 
 .theme-dot {
-  color: oklch(0.48 0.035 245);
+  color: var(--color-muted);
   font-size: 1rem;
+}
+
+.theme-dot:hover,
+.icon-btn:hover {
+  color: var(--color-text);
+  border-color: var(--color-blue);
+  background: var(--color-blue-soft);
 }
 
 .mob-only { display: none; }
@@ -132,7 +140,7 @@
   flex-direction: column;
   gap: 0.15rem;
   padding: 0.75rem 1.25rem 1.25rem;
-  background: color-mix(in oklch, var(--color-bg) 94%, white);
+  background: color-mix(in oklch, var(--color-bg) 92%, var(--color-surface));
   border-bottom: 1px solid var(--color-border);
   transform: translateY(-120%);
   transition: transform 0.22s ease;
@@ -152,13 +160,48 @@
 
 @media (max-width: 720px) {
   .desk-nav { display: none; }
-  .theme-dot { display: none; }
   .mob-only { display: inline-grid; }
 }
 </style>
 
 <script is:inline>
   function initHeader() {
+    var root = document.documentElement;
+    var themeBtn = document.querySelector('.theme-dot');
+    var storedTheme = null;
+    try {
+      storedTheme = localStorage.getItem('theme');
+    } catch (error) {}
+
+    function applyTheme(theme, persist) {
+      root.dataset.theme = theme;
+      if (persist) {
+        try {
+          localStorage.setItem('theme', theme);
+        } catch (error) {}
+      }
+      if (themeBtn) {
+        var nextTheme = theme === 'dark' ? 'light' : 'dark';
+        themeBtn.textContent = theme === 'dark' ? '☾' : '☼';
+        themeBtn.setAttribute('aria-label', 'Switch to ' + nextTheme + ' theme');
+        themeBtn.setAttribute('aria-pressed', String(theme === 'dark'));
+      }
+    }
+
+    if (!root.dataset.theme) {
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(storedTheme || (prefersDark ? 'dark' : 'light'), false);
+    } else {
+      applyTheme(root.dataset.theme, false);
+    }
+
+    if (themeBtn && themeBtn.dataset.bound !== 'true') {
+      themeBtn.dataset.bound = 'true';
+      themeBtn.addEventListener('click', function() {
+        applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true);
+      });
+    }
+
     var path = window.location.pathname;
     document.querySelectorAll('.nav-link, .mob-link').forEach(function(link) {
       var href = link.getAttribute('href');

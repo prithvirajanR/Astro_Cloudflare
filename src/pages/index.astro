@@ -219,14 +219,14 @@ const places = [
 .hero-copy h1 {
   margin: 0 0 0.45rem;
   font-family: var(--font-display);
-  color: oklch(0.18 0.052 250);
+  color: var(--color-text);
   font-size: clamp(4rem, 7.4vw, 5.7rem);
   letter-spacing: -0.035em;
 }
 
 .hero-summary {
   max-width: 34rem;
-  color: oklch(0.34 0.052 245);
+  color: var(--color-muted);
   font-size: 1.35rem;
   line-height: 1.45;
 }
@@ -259,7 +259,7 @@ const places = [
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  color: oklch(0.32 0.14 252);
+  color: var(--color-blue);
   font-family: var(--font-heading);
   font-size: 0.86rem;
   font-weight: 700;
@@ -271,7 +271,7 @@ const places = [
   width: 24px;
   height: 24px;
   color: var(--color-blue);
-  background: white;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 4px;
   font-size: 0.68rem;
@@ -285,7 +285,7 @@ const places = [
 
 .interest-panel h2 {
   margin-bottom: 0.9rem;
-  color: oklch(0.42 0.15 156);
+  color: var(--color-accent2);
   font-family: var(--font-heading);
   font-size: 0.82rem;
   text-transform: uppercase;
@@ -296,7 +296,7 @@ const places = [
   display: grid;
   gap: 0.45rem;
   padding-left: 1.1rem;
-  color: oklch(0.23 0.035 245);
+  color: var(--color-text);
 }
 
 .interest-panel li::marker {
@@ -311,7 +311,7 @@ const places = [
 }
 
 .intro-copy p {
-  color: oklch(0.23 0.035 245);
+  color: var(--color-text);
   font-size: 0.98rem;
   line-height: 1.72;
 }
@@ -322,7 +322,7 @@ const places = [
 }
 
 .intro-copy strong {
-  color: oklch(0.28 0.14 252);
+  color: var(--color-blue);
 }
 
 .profile-panel {
@@ -368,9 +368,9 @@ const places = [
   width: 100%;
   aspect-ratio: 1 / 1.12;
   object-fit: cover;
-  border: 1px solid oklch(0.26 0.04 250);
+  border: 1px solid var(--color-border);
   border-radius: 2px;
-  box-shadow: 0 0 0 8px white;
+  box-shadow: 0 0 0 8px var(--color-surface);
   filter: grayscale(0.08) contrast(1.04);
 }
 
@@ -407,7 +407,7 @@ const places = [
 }
 
 .profile-facts p {
-  color: oklch(0.32 0.045 245);
+  color: var(--color-muted);
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -544,13 +544,13 @@ const places = [
   width: 16px;
   height: 16px;
   background: var(--color-accent);
-  border: 3px solid white;
+  border: 3px solid var(--color-bg);
   border-radius: 50%;
-  box-shadow: 0 0 0 1px color-mix(in oklch, var(--color-accent) 65%, white);
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--color-accent) 65%, var(--color-surface));
 }
 
 .timeline-period {
-  color: oklch(0.33 0.16 252);
+  color: var(--color-blue);
   font-family: var(--font-heading);
   font-size: 0.86rem;
   font-weight: 800;
@@ -581,7 +581,7 @@ const places = [
   position: relative;
   min-height: 330px;
   overflow: hidden;
-  background: white;
+  background: color-mix(in oklch, var(--color-surface) 78%, transparent);
   border: 0;
   border-radius: 2px;
 }
@@ -634,13 +634,13 @@ const places = [
   width: 12px;
   height: 12px;
   background: var(--color-accent);
-  border: 2px solid white;
+  border: 2px solid var(--color-bg);
   border-radius: 50%;
 }
 
 .map-point b {
   padding: 0.22rem 0.42rem;
-  background: color-mix(in oklch, white 86%, transparent);
+  background: color-mix(in oklch, var(--color-surface) 86%, transparent);
   border: 1px solid color-mix(in oklch, var(--color-border) 70%, transparent);
   border-radius: 6px;
 }

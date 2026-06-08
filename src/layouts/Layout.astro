@@ -39,6 +39,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>{title}</title>
+  <script is:inline>
+    (function() {
+      try {
+        var storedTheme = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = storedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch (error) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    })();
+  </script>
   <ClientRouter />
 </head>
 <body>
@@ -92,7 +104,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     border-top: 1px solid var(--color-border);
     padding: 1.5rem 0;
     color: var(--color-muted);
-    background: color-mix(in oklch, var(--color-bg) 88%, white);
+    background: color-mix(in oklch, var(--color-bg) 88%, var(--color-surface));
   }
 
   .footer-inner {
