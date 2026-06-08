@@ -13,77 +13,59 @@ const sorted = posts.sort((a, b) => a.data.order - b.data.order);
 >
   <div class="container">
     <div class="page-header">
-      <p class="eyebrow">Writing</p>
       <h1>Blog <span class="accent">.</span></h1>
       <p class="page-sub">
         Technical notes from projects I built: what problem each repo solved, how the workflow was designed, and what the results showed.
       </p>
     </div>
 
-    <section class="blog-section" aria-label="Blog articles">
-      <div class="blog-grid">
-        {sorted.map((post) => (
-          <BlogCard
-            title={post.data.title}
-            description={post.data.description}
-            href={`/blog/${post.id}`}
-            date={post.data.date}
-            tags={post.data.tags}
-            repo={post.data.repo}
-            github={post.data.github}
-            heroImage={post.data.heroImage}
-            heroAlt={post.data.heroAlt}
-            readingTime={post.data.readingTime}
-            featured={post.data.featured}
-          />
-        ))}
-      </div>
+    <section class="blog-grid" aria-label="Blog articles">
+      {sorted.map((post) => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          href={`/blog/${post.id}`}
+          date={post.data.date}
+          tags={post.data.tags}
+          repo={post.data.repo}
+          github={post.data.github}
+          heroImage={post.data.heroImage}
+          heroAlt={post.data.heroAlt}
+          readingTime={post.data.readingTime}
+          featured={post.data.featured}
+        />
+      ))}
     </section>
   </div>
 </Layout>
 
 <style>
 .page-header {
-  padding: 2.4rem 2rem 2rem;
+  padding: 4rem 0 3rem;
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 2.5rem;
-}
-.eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: 1rem;
-}
-.page-header h1 { margin-bottom: 0.7rem; }
-.page-sub {
-  max-width: 760px;
-  font-size: 0.98rem;
-  color: var(--color-muted);
+  margin-bottom: 3rem;
 }
 
-.blog-section {
-  margin-bottom: 3.2rem;
+.page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.page-sub {
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  max-width: 720px;
 }
 
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.35rem;
-  padding-bottom: 1rem;
-  padding-inline: 2rem;
+  gap: 1.1rem;
+  padding-bottom: 2rem;
 }
 
 @media (max-width: 780px) {
   .blog-grid {
     grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 760px) {
-  .page-header,
-  .blog-grid { padding-inline: 0; }
 }
 </style>

@@ -39,20 +39,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>{title}</title>
-
-  <script is:inline>
-    (function() {
-      var stored = localStorage.getItem('theme');
-      if (stored === 'dark') {
-        document.documentElement.classList.add('dark');
-      }
-    })();
-  </script>
-
   <ClientRouter />
 </head>
 <body>
-  <div class="scroll-progress" aria-hidden="true"></div>
   <Header />
 
   <main id="main-content">
@@ -60,27 +49,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </main>
 
   <footer class="site-footer">
-    <div class="footer-content">
-      <p>
-        &copy; {new Date().getFullYear()} Prithvi Rajan
-        <span aria-hidden="true">/</span>
-        <a href="https://github.com/prithvirajanR" target="_blank" rel="noopener" class="footer-link">GitHub</a>
-        <span aria-hidden="true">/</span>
-        <a href="https://www.linkedin.com/in/prithvi-rajan-925879256/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
-        <span aria-hidden="true">/</span>
-        <a href="mailto:prithvi.rajan300@gmail.com" class="footer-link">Email</a>
-      </p>
-      <p class="footer-note">Bioinformatics, biomedical data systems, and database engineering.</p>
+    <div class="container-wide footer-inner">
+      <p>© {new Date().getFullYear()} Prithvi Rajan</p>
+      <nav aria-label="Footer links">
+        <a href="https://github.com/prithvirajanR" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/prithvi-rajan-925879256/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:prithvi.rajan300@gmail.com">Email</a>
+      </nav>
     </div>
   </footer>
-
-  <script is:inline>
-    document.addEventListener('astro:before-swap', function(e) {
-      var isDark = document.documentElement.classList.contains('dark');
-      if (isDark) e.newDocument.documentElement.classList.add('dark');
-      else e.newDocument.documentElement.classList.remove('dark');
-    });
-  </script>
 
   <script>
     function initAnimations() {
@@ -102,102 +79,52 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     initAnimations();
     document.addEventListener('astro:page-load', initAnimations);
   </script>
-
-  <script is:inline>
-    function initScrollProgress() {
-      var bar = document.querySelector('.scroll-progress');
-      if (!bar) return;
-
-      function updateProgress() {
-        var doc = document.documentElement;
-        var scrollable = doc.scrollHeight - window.innerHeight;
-        var progress = scrollable > 0 ? (window.scrollY / scrollable) : 0;
-        bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, progress)) + ')';
-      }
-
-      updateProgress();
-      window.removeEventListener('scroll', updateProgress);
-      window.addEventListener('scroll', updateProgress, { passive: true });
-      window.removeEventListener('resize', updateProgress);
-      window.addEventListener('resize', updateProgress);
-      document.addEventListener('astro:page-load', updateProgress, { once: true });
-    }
-
-    initScrollProgress();
-    document.addEventListener('astro:page-load', initScrollProgress);
-  </script>
 </body>
 </html>
 
 <style>
-  .scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 300;
-    width: 100%;
-    height: 2px;
-    background: var(--color-accent);
-    transform: scaleX(0);
-    transform-origin: left center;
-    pointer-events: none;
-  }
-
   #main-content {
-    padding-top: 0;
-    padding-bottom: 3rem;
     min-height: calc(100vh - var(--header-height));
+    padding-bottom: 4rem;
   }
 
   .site-footer {
     border-top: 1px solid var(--color-border);
+    padding: 1.5rem 0;
     color: var(--color-muted);
-    background: var(--color-bg);
-    width: 100%;
+    background: color-mix(in oklch, var(--color-bg) 88%, white);
   }
 
-  .footer-content {
+  .footer-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    width: 100%;
-    padding: 1.35rem 2rem;
-    font-family: var(--font-heading);
-    font-size: 0.86rem;
+    font-size: 0.9rem;
   }
 
-  .footer-content p {
+  .footer-inner p {
     color: var(--color-muted);
-    font-size: 0.86rem;
-    line-height: 1.4;
+    font-size: 0.9rem;
   }
 
-  .footer-content span {
-    color: var(--color-border);
-    padding: 0 0.35rem;
+  .footer-inner nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
-  .footer-link {
-    color: var(--color-accent);
-    transition: color 0.15s;
-    font-weight: 600;
+  .footer-inner a {
+    color: var(--color-muted);
+    font-weight: 700;
   }
 
-  .footer-link:hover {
-    color: var(--color-accent2);
-    text-decoration: underline;
-  }
+  .footer-inner a:hover { color: var(--color-blue); }
 
-  .footer-note {
-    font-weight: 500;
-  }
-
-  @media (max-width: 700px) {
-    .footer-content {
-      flex-direction: column;
+  @media (max-width: 640px) {
+    .footer-inner {
       align-items: flex-start;
-      padding-inline: 1.2rem;
+      flex-direction: column;
     }
   }
 </style>

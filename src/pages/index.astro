@@ -8,24 +8,43 @@ const interests = [
   'machine learning for biomedical questions',
 ];
 
+const skills = [
+  'Python',
+  'R',
+  'SQL / PL/SQL',
+  'Power BI',
+  'Oracle 11g/19c',
+  'IBM DB2',
+  'ETL pipelines',
+  'ESMFold',
+  'GNINA',
+  'AutoDock Vina',
+  'Docker',
+  'Linux / AIX',
+];
+
 const affiliations = [
   {
     name: 'Freie Universitaet Berlin',
+    detail: 'M.Sc. Bioinformatics',
     logo: '/logos/fu-berlin.svg',
     logoClass: 'logo-mark logo-fu',
   },
   {
     name: 'Kaiser Permanente',
+    detail: 'Healthcare data systems and analytics',
     logo: '/logos/kaiser-permanente.svg',
     logoClass: 'logo-mark logo-kaiser',
   },
   {
     name: 'Accenture',
+    detail: 'Data analysis and database administration',
     logo: '/logos/accenture.svg',
     logoClass: 'logo-mark logo-accenture',
   },
   {
     name: 'Karunya University',
+    detail: 'B.Tech Biotechnology foundation',
     logo: '/logos/karunya.png',
     logoClass: 'logo-mark logo-karunya',
   },
@@ -39,7 +58,7 @@ const timeline = [
   },
   {
     period: 'Jan-Jul 2024',
-    title: 'Data Analyst, Accenture & Kaiser Permanente',
+    title: 'Data Analyst, Accenture and Kaiser Permanente',
     detail: 'Analyzed hospital admissions and claims records, built Power BI dashboards, and shortened recurring report cycles with SQL pipelines.',
   },
   {
@@ -63,429 +82,515 @@ const places = [
 ---
 
 <Layout title="Prithvi Rajan | Data Scientist and Bioinformatician">
-  <div class="container profile-page">
-    <section class="intro" aria-labelledby="intro-title">
-      <div class="intro-grid">
+  <section class="hero">
+    <div class="container-wide hero-grid">
+      <div class="hero-copy will-animate">
+        <h1>Prithvi Rajan</h1>
+        <p class="hero-summary">Data Scientist | Bioinformatics MSc | Biomedical Data Systems</p>
+
+        <p class="location-line">Berlin, Germany</p>
+
+        <div class="action-row" aria-label="Profile links">
+          <a href="https://github.com/prithvirajanR" target="_blank" rel="noopener"><span>G</span>GitHub</a>
+          <a href="https://www.linkedin.com/in/prithvi-rajan-925879256/" target="_blank" rel="noopener"><span>in</span>LinkedIn</a>
+          <a href="mailto:prithvi.rajan300@gmail.com"><span>@</span>Email</a>
+          <a href="/Prithivi_Rajan_CV.pdf" target="_blank" rel="noopener"><span>CV</span>Resume</a>
+        </div>
+
+        <div class="interest-panel" aria-labelledby="interests-heading">
+          <h2 id="interests-heading">My broad interests:</h2>
+          <ul>
+            {interests.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+
         <div class="intro-copy">
-          <h1 id="intro-title"><span>Prithvi</span> Rajan</h1>
-          <p class="intro-subtitle">Data Scientist | Bioinformatics MSc | Biomedical Data Systems</p>
-
-          <aside class="intro-aside" aria-label="Profile details">
-            <img src="/prof_pic.jpg" alt="Prithvi Rajan" class="intro-photo" loading="eager" />
-            <p class="profile-location">Berlin, Germany</p>
-
-            <div class="social-row" aria-label="Profile links">
-              <a href="https://github.com/prithvirajanR" class="social-link" target="_blank" rel="noopener">
-                <span class="social-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path d="M12 2C6.48 2 2 6.58 2 12.22c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.46-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.56 2.35 1.11 2.92.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.05 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.71 0 0 .84-.27 2.75 1.05A9.34 9.34 0 0 1 12 6.94c.85 0 1.7.12 2.5.34 1.9-1.32 2.74-1.05 2.74-1.05.55 1.4.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.92-2.34 4.79-4.57 5.04.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .27.18.59.69.49A10.1 10.1 0 0 0 22 12.22C22 6.58 17.52 2 12 2Z" />
-                  </svg>
-                </span>
-                GitHub
-              </a>
-              <a href="https://www.linkedin.com/in/prithvi-rajan-925879256/" class="social-link" target="_blank" rel="noopener">
-                <span class="social-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path d="M5.2 8.8H2.4V21h2.8V8.8ZM3.8 3C2.8 3 2 3.78 2 4.75S2.78 6.5 3.76 6.5h.02c1.02 0 1.8-.78 1.8-1.75S4.8 3 3.8 3Zm7 5.8H8V21h2.8v-6.78c0-.36.03-.72.13-.98.3-.72.98-1.47 2.12-1.47 1.5 0 2.1 1.13 2.1 2.8V21H18v-6.75c0-3.62-1.93-5.3-4.5-5.3-2.1 0-3.02 1.16-3.53 1.97h.03V8.8Z" />
-                  </svg>
-                </span>
-                LinkedIn
-              </a>
-              <a href="mailto:prithvi.rajan300@gmail.com" class="social-link">
-                <span class="social-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path d="M3.5 5h17A1.5 1.5 0 0 1 22 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 17.5v-11A1.5 1.5 0 0 1 3.5 5Zm.7 2 7.8 5.45L19.8 7H4.2Zm15.8 1.85-7.43 5.19a1 1 0 0 1-1.14 0L4 8.85V17h16V8.85Z" />
-                  </svg>
-                </span>
-                Email
-              </a>
-              <a href="/Prithivi_Rajan_CV.pdf" class="social-link" target="_blank" rel="noopener">
-                <span class="social-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" role="img">
-                    <path d="M6 2.5h8.3L20 8.2v13.3H6V2.5Zm7.5 1.8V9h4.7l-4.7-4.7ZM8 4.5v15h10V11h-6.5V4.5H8Zm2 8.5h6v1.7h-6V13Zm0 3.3h6v1.7h-6v-1.7Z" />
-                  </svg>
-                </span>
-                Resume
-              </a>
-            </div>
-          </aside>
-
-          <div class="interest-block" aria-label="Broad interests">
-            <p>My broad interests:</p>
-            <ul>
-              {interests.map(item => <li>{item}</li>)}
-            </ul>
-          </div>
-
-          <div class="bio-copy">
-            <p>
-              I'm an <strong>MSc Bioinformatics student at Freie Universitaet Berlin</strong>, building research
-              experience around the practical middle of bioinformatics: clean workflows, careful quality control,
-              and results that other people can actually rerun.
-            </p>
-
-            <p>
-              My work includes analysis pipelines and dashboards using <strong>Python</strong>, <strong>R</strong>,
-              <strong>Snakemake</strong>, <strong>Docker</strong>, and the command-line biology toolkit. I focus
-              on connecting genomic, clinical, and environmental data responsibly to support precision medicine and discovery.
-            </p>
-
-            <p>
-              Right now I'm strengthening my research practice across structural biology, statistical analysis, and
-              workflow engineering while looking for projects where biology and computation meet in a useful, reproducible way.
-            </p>
-          </div>
+          <p>
+            I'm an <strong>MSc Bioinformatics</strong> student at <strong>Freie Universitaet Berlin</strong>,
+            building research experience around the practical middle of bioinformatics: clean workflows,
+            careful quality control, and results that other people can actually rerun.
+          </p>
+          <p>
+            My work includes analysis pipelines and dashboards using Python, R, Snakemake, Docker, and
+            the command-line biology toolkit. I focus on connecting genomic, clinical, and environmental
+            data responsibly to support precision medicine and discovery.
+          </p>
+          <p>
+            Right now I'm strengthening my research practice across structural biology, statistical
+            analysis, and workflow engineering while looking for projects where biology and computation
+            meet in a useful, reproducible way.
+          </p>
         </div>
       </div>
 
-      <div class="affiliation-strip" aria-label="Current institutions">
-        {affiliations.map(item => (
-          <div class="affiliation-card" title={item.name}>
-            <img
-              src={item.logo}
-              alt={item.name}
-              class={item.logoClass}
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </div>
-    </section>
+      <aside class="profile-panel will-animate" aria-label="Profile details">
+        <div class="portrait-field">
+          <img src="/prof_pic.jpg" alt="Portrait of Prithvi Rajan" class="profile-photo" loading="eager" />
+        </div>
+        <div class="profile-facts">
+          <article>
+            <span>Education</span>
+            <p>MSc Bioinformatics<br />Freie Universitaet Berlin</p>
+          </article>
+          <article>
+            <span>Research Focus</span>
+            <p>Structural bioinformatics, computational biology, healthcare data systems</p>
+          </article>
+          <article>
+            <span>Toolkit</span>
+            <p>Python, R, Snakemake, Docker, SQL, Linux</p>
+          </article>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-    <section class="timeline-section" aria-labelledby="timeline-title">
-      <h2 id="timeline-title">Timeline</h2>
-      <div class="timeline-list">
+  <section class="affiliation-section">
+    <div class="container-wide affiliation-grid">
+      {affiliations.map(item => (
+        <article class="affiliation-card will-animate">
+          <div class="affiliation-logo">
+            <img src={item.logo} alt={`${item.name} logo`} class={item.logoClass} loading="lazy" />
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Timeline</h2>
+        </div>
+        <a href="/journey" class="text-link">View full journey</a>
+      </div>
+
+      <div class="timeline">
         {timeline.map(item => (
-          <article class="timeline-item">
-            <time>{item.period}</time>
-            <div class="timeline-details">
-              <h3 class="timeline-item-title">{item.title}</h3>
+          <article class="timeline-item will-animate">
+            <p class="timeline-period">{item.period}</p>
+            <div>
+              <h3>{item.title}</h3>
               <p>{item.detail}</p>
             </div>
           </article>
         ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="map-section" aria-labelledby="map-title">
-      <div class="map-container-inner">
-        <div class="map-copy">
-          <p class="eyebrow">Research geography</p>
-          <h2 id="map-title" class="section-title">Building in Berlin. Contributing globally.</h2>
-          <p class="map-desc">
-            Collaborating across institutions and open science communities worldwide to
-            advance reproducible, data-driven research.
-          </p>
-        </div>
-
-        <div class="signal-map will-animate" aria-label="Stylized research map">
-          <div class="map-gridlines"></div>
-          {places.map(place => (
-            <div class="map-point" style={`--x:${place.x}%; --y:${place.y}%`}>
-              <span></span>
-              <b>{place.label}</b>
-            </div>
-          ))}
-        </div>
+  <section class="section map-section">
+    <div class="container map-grid">
+      <div class="will-animate">
+        <p class="section-kicker">Research geography</p>
+        <h2 class="section-title">Building in Berlin. Contributing globally.</h2>
+        <p>
+          Collaborating across institutions and open science communities worldwide to
+          advance reproducible, data-driven research.
+        </p>
       </div>
-    </section>
-  </div>
+
+      <div class="signal-map will-animate" aria-label="Stylized research map">
+        <div class="map-gridlines"></div>
+        {places.map(place => (
+          <div class="map-point" style={`--x:${place.x}%; --y:${place.y}%`}>
+            <span></span>
+            <b>{place.label}</b>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
-.profile-page {
-  padding-top: 1.15rem;
+.hero {
+  padding: clamp(2.8rem, 5vw, 4.4rem) 0 2.4rem;
 }
 
-.intro {
-  padding: 1.55rem 2rem 0;
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 470px);
+  gap: clamp(2rem, 6vw, 4.6rem);
+  align-items: start;
 }
 
-.intro-grid {
-  display: flow-root;
+.hero-copy h1 {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  color: oklch(0.18 0.052 250);
+  font-size: clamp(4rem, 7.4vw, 5.7rem);
+  letter-spacing: -0.035em;
+}
+
+.hero-summary {
+  max-width: 34rem;
+  color: oklch(0.34 0.052 245);
+  font-size: 1.35rem;
+  line-height: 1.45;
+}
+
+.location-line {
+  margin-top: 1.45rem;
+  color: var(--color-text);
+  font-size: 0.98rem;
+}
+
+.location-line::before {
+  content: '';
+  display: inline-block;
+  width: 0.62rem;
+  height: 0.62rem;
+  margin-right: 0.55rem;
+  border: 2px solid var(--color-blue);
+  border-radius: 999px;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 1rem;
+  margin-top: 1.3rem;
+}
+
+.action-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: oklch(0.32 0.14 252);
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.action-row span {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-blue);
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 0.68rem;
+}
+
+.interest-panel {
+  margin-top: 2.5rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.interest-panel h2 {
+  margin-bottom: 0.9rem;
+  color: oklch(0.42 0.15 156);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.interest-panel ul {
+  display: grid;
+  gap: 0.45rem;
+  padding-left: 1.1rem;
+  color: oklch(0.23 0.035 245);
+}
+
+.interest-panel li::marker {
+  color: var(--color-accent);
 }
 
 .intro-copy {
-  min-width: 0;
-}
-
-.intro h1 {
-  margin-top: 0;
-  margin-bottom: 0.45rem;
-  font-size: clamp(2.1rem, 4.2vw, 2.65rem);
-}
-
-.intro h1 span {
-  color: var(--color-text);
-}
-
-.intro-subtitle {
-  margin-bottom: 1.35rem;
-  font-size: 0.95rem;
-  color: var(--color-text);
-}
-
-.interest-block {
-  margin-bottom: 1.3rem;
-}
-
-.interest-block p {
-  margin-bottom: 0.55rem;
-}
-
-.interest-block ul {
-  margin-left: 1.35rem;
-  color: var(--color-text);
-}
-
-.interest-block li {
-  padding-left: 0.15rem;
-}
-
-.intro-aside {
-  float: right;
-  width: min(38%, 390px);
-  min-width: 330px;
-  margin: 0 0 1.45rem 2.75rem;
-  padding-top: 0;
-  text-align: center;
-}
-
-.intro-photo {
-  display: block;
-  width: 100%;
-  max-width: 330px;
-  aspect-ratio: 1 / 1.12;
-  height: auto;
-  margin-inline: auto;
-  border-radius: 4px;
-  object-fit: cover;
-  object-position: center 36%;
-  border: 1px solid var(--color-border);
-  box-shadow: none;
-}
-
-.profile-location {
-  margin-top: 1rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.social-row {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: 0.45rem;
-  margin-top: 0.55rem;
-  white-space: nowrap;
-}
-
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28rem;
-  color: var(--color-accent);
-  font-size: 0.86rem;
-  font-weight: 600;
-}
-
-.social-link + .social-link::before {
-  content: '|';
-  color: var(--color-border);
-  margin-right: 0.1rem;
-}
-
-.social-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-muted);
-  width: 1rem;
-  height: 1rem;
-  flex: 0 0 auto;
-}
-
-.social-icon svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  fill: currentColor;
-}
-
-.social-link:hover,
-.social-link:hover .social-icon {
-  color: var(--color-accent2);
-}
-
-.bio-copy {
-  display: block;
-  margin-top: 1.5rem;
-}
-
-.bio-copy p {
-  margin: 0;
-}
-
-.bio-copy p + p {
-  margin-top: 1.35rem;
-}
-
-.bio-copy strong {
-  font-weight: 800;
-  color: var(--color-accent);
-}
-
-.affiliation-strip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 2.25rem;
-  padding: 1rem 0 2.1rem;
+  max-width: 34rem;
+  gap: 1.25rem;
+  margin-top: 1.6rem;
+}
+
+.intro-copy p {
+  color: oklch(0.23 0.035 245);
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.intro-copy p:first-child {
+  padding-left: 1.35rem;
+  border-left: 2px solid var(--color-accent);
+}
+
+.intro-copy strong {
+  color: oklch(0.28 0.14 252);
+}
+
+.profile-panel {
+  padding-top: 2.4rem;
+  background:
+    linear-gradient(90deg, color-mix(in oklch, var(--color-border) 36%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in oklch, var(--color-border) 36%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.portrait-field {
+  position: relative;
+  max-width: 420px;
+  margin-left: auto;
+}
+
+.portrait-field::before,
+.portrait-field::after {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-color: var(--color-accent);
+  pointer-events: none;
+}
+
+.portrait-field::before {
+  left: -10px;
+  bottom: -10px;
+  border-left: 3px solid var(--color-accent);
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.portrait-field::after {
+  right: -10px;
+  top: -10px;
+  border-right: 3px solid var(--color-blue);
+  border-top: 3px solid var(--color-blue);
+}
+
+.profile-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.12;
+  object-fit: cover;
+  border: 1px solid oklch(0.26 0.04 250);
+  border-radius: 2px;
+  box-shadow: 0 0 0 8px white;
+  filter: grayscale(0.08) contrast(1.04);
+}
+
+.profile-facts {
+  display: grid;
+  gap: 1.25rem;
+  width: min(330px, 86%);
+  margin: 3.2rem auto 0;
+}
+
+.profile-facts article {
+  padding-left: 3rem;
+  position: relative;
+}
+
+.profile-facts article::before {
+  content: '';
+  position: absolute;
+  left: 0.35rem;
+  top: 0.2rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 3px solid var(--color-blue);
+  border-radius: 6px;
+}
+
+.profile-facts span {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.profile-facts p {
+  color: oklch(0.32 0.045 245);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.affiliation-section {
+  padding: 2rem 0 2.5rem;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
 
-.affiliation-card {
+.affiliation-grid {
   display: grid;
-  place-items: center;
-  align-content: center;
-  min-height: 100px;
-  padding: 0.75rem;
-  background: #ffffff;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
+  grid-template-columns: repeat(4, minmax(210px, 1fr));
+  gap: 0.95rem;
 }
 
-.affiliation-card img {
-  display: block;
+.affiliation-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 122px;
+  padding: 1.25rem;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  text-align: center;
+}
+
+.affiliation-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: auto;
-  max-height: 54px;
+  height: 72px;
+}
+
+.affiliation-logo img {
+  display: block;
+  width: var(--logo-width, 190px);
+  height: var(--logo-height, 52px);
+  max-width: min(100%, var(--logo-width, 190px));
   object-fit: contain;
 }
 
-.timeline-section {
-  margin: 3.3rem 2rem 0;
-  padding-top: 1.45rem;
-  border-top: 1px solid var(--color-border);
+.affiliation-logo .logo-fu {
+  --logo-width: 190px;
+  --logo-height: 54px;
 }
 
-.timeline-section h2 {
-  margin-bottom: 1.55rem;
-  font-size: clamp(1.55rem, 2.8vw, 2.15rem);
-  font-weight: 500;
+.affiliation-logo .logo-kaiser {
+  --logo-width: 250px;
+  --logo-height: 50px;
 }
 
-.timeline-list {
-  position: relative;
-  display: grid;
-  gap: 1.55rem;
-  padding-left: 1.65rem;
+.affiliation-logo .logo-accenture {
+  --logo-width: 206px;
+  --logo-height: 50px;
 }
 
-.timeline-list::before {
+.affiliation-logo .logo-karunya {
+  --logo-width: 198px;
+  --logo-height: 54px;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.section-title::after {
   content: '';
-  position: absolute;
-  top: 0.65rem;
-  bottom: 0.65rem;
-  left: 0.44rem;
-  width: 2px;
-  background: var(--color-border);
+  display: block;
+  width: 54px;
+  height: 2px;
+  margin-top: 0.7rem;
+  background: var(--color-accent);
+}
+
+.section-head .section-title::after {
+  display: none;
+}
+
+.map-section .section-title {
+  font-size: clamp(1.9rem, 3vw, 2.55rem);
+  line-height: 1.14;
+}
+
+.map-section .section-title::after {
+  display: block;
+}
+
+.text-link {
+  color: var(--color-blue);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.text-link:hover {
+  color: var(--color-accent2);
+}
+
+.timeline {
+  display: grid;
+  gap: 0;
+  position: relative;
+  border-top: 0;
 }
 
 .timeline-item {
-  position: relative;
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  gap: 1.3rem;
-  align-items: baseline;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 1.8rem;
+  padding: 1.25rem 0 1.25rem 2rem;
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
 }
 
 .timeline-item::before {
   content: '';
   position: absolute;
-  top: 0.37rem;
-  left: -1.65rem;
-  width: 0.9rem;
-  height: 0.9rem;
-  border-radius: 50%;
+  left: 0;
+  top: 1.6rem;
+  width: 16px;
+  height: 16px;
   background: var(--color-accent);
-  box-shadow: 0 0 0 5px var(--color-secondary-soft);
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--color-accent) 65%, white);
 }
 
-.timeline-item time {
-  color: var(--color-text);
-  font-size: 0.9rem;
-  font-weight: 800;
-  white-space: nowrap;
-}
-
-.timeline-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.timeline-item-title {
+.timeline-period {
+  color: oklch(0.33 0.16 252);
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 0.86rem;
   font-weight: 800;
 }
 
-.timeline-item p {
-  margin: 0;
+.timeline-item h3 {
+  font-family: var(--font-heading);
+  margin-bottom: 0.35rem;
+}
+
+.timeline-item p:last-child {
   color: var(--color-muted);
-  font-size: 0.94rem;
-  line-height: 1.58;
+  max-width: 68ch;
 }
 
-.map-section {
-  margin: 3.3rem 2rem 0;
-  padding-top: 1.45rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.map-container-inner {
+.map-grid {
   display: grid;
   grid-template-columns: minmax(230px, 0.42fr) minmax(360px, 1fr);
   gap: clamp(2rem, 6vw, 4rem);
   align-items: center;
 }
 
-.eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: 0.8rem;
-}
-
-.map-copy h2 {
-  margin-bottom: 0.8rem;
-}
-
-.map-desc {
+.map-grid p {
   color: var(--color-muted);
-  font-size: 0.94rem;
-  line-height: 1.58;
 }
 
 .signal-map {
   position: relative;
   min-height: 330px;
   overflow: hidden;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
+  background: white;
+  border: 0;
+  border-radius: 2px;
 }
 
 .signal-map::before {
   content: '';
   position: absolute;
   inset: 18%;
-  border: 1px dashed color-mix(in oklch, var(--color-accent) 48%, transparent);
+  border: 1px dashed color-mix(in oklch, var(--color-blue) 48%, transparent);
   border-radius: 50%;
   transform: rotate(-12deg) scaleX(1.35);
 }
@@ -497,7 +602,7 @@ const places = [
   right: 14%;
   top: 52%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, color-mix(in oklch, var(--color-accent) 70%, transparent), color-mix(in oklch, var(--color-secondary) 70%, transparent), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in oklch, var(--color-blue) 70%, transparent), color-mix(in oklch, var(--color-accent) 70%, transparent), transparent);
   transform: rotate(-8deg);
 }
 
@@ -528,61 +633,52 @@ const places = [
 .map-point span {
   width: 12px;
   height: 12px;
-  background: var(--color-secondary);
-  border: 2px solid var(--color-bg);
+  background: var(--color-accent);
+  border: 2px solid white;
   border-radius: 50%;
 }
 
 .map-point b {
   padding: 0.22rem 0.42rem;
-  background: var(--color-surface2);
-  border: 1px solid var(--color-border);
+  background: color-mix(in oklch, white 86%, transparent);
+  border: 1px solid color-mix(in oklch, var(--color-border) 70%, transparent);
   border-radius: 6px;
 }
 
 @media (max-width: 860px) {
-  .intro-grid,
-  .map-container-inner {
+  .hero-grid,
+  .bio-grid,
+  .map-grid {
     grid-template-columns: 1fr;
   }
 
-  .intro-aside {
-    float: none;
-    width: 100%;
-    min-width: 0;
-    margin: 0 0 1.8rem;
-    padding-top: 0;
-    text-align: left;
+  .profile-panel {
+    max-width: 360px;
+    padding-top: 1rem;
   }
 
-  .intro-photo {
-    margin-inline: 0;
-  }
-
-  .social-row {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    white-space: normal;
-  }
-
-  .affiliation-strip {
+  .affiliation-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 700px) {
-  .intro {
-    padding-inline: 0;
+@media (max-width: 620px) {
+  .hero-copy h1 {
+    font-size: clamp(3.5rem, 18vw, 5rem);
   }
 
-  .timeline-section,
-  .map-section {
-    margin-inline: 0;
+  .hero-summary {
+    font-size: 1.08rem;
+  }
+
+  .section-head {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .timeline-item {
     grid-template-columns: 1fr;
-    gap: 0.3rem;
+    gap: 0.4rem;
   }
 
   .signal-map {
@@ -591,7 +687,7 @@ const places = [
 }
 
 @media (max-width: 520px) {
-  .affiliation-strip {
+  .affiliation-grid {
     grid-template-columns: 1fr;
   }
 }
