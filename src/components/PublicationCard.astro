@@ -48,13 +48,16 @@ const { year, title, authors, journal, doi, paper_url, code_url, abstract, featu
 .pub-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 .pub-card:hover {
   border-color: var(--color-accent);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-card-hover);
 }
 .pub-inner { 
@@ -141,20 +144,23 @@ const { year, title, authors, journal, doi, paper_url, code_url, abstract, featu
   padding-top: 0.4rem;
 }
 .pub-btn {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--color-accent);
-  border: 1px solid var(--color-border);
-  padding: 0.35rem 0.8rem;
-  border-radius: 4px;
-  background: var(--color-surface);
-  transition: all 0.2s ease;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+  padding: 0.4rem 0.95rem;
+  border-radius: 99px;
+  background: transparent;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   line-height: 1;
 }
 .pub-btn:hover {
+  background: var(--color-tag-bg);
   border-color: var(--color-accent);
-  background: var(--color-surface2);
+  color: var(--color-accent);
+  box-shadow: 0 4px 10px rgba(var(--color-accent-rgb), 0.08);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 600px) {

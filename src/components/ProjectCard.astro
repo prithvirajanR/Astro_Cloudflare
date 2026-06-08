@@ -54,15 +54,18 @@ const { title, description, tags = [], image, imageAlt, github, demo, featured }
 .proj-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-card);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.28s cubic-bezier(0.4, 0, 0.2, 1), transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .proj-card:hover {
   border-color: var(--color-accent);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-card-hover);
 }
 .proj-media {
@@ -102,23 +105,27 @@ const { title, description, tags = [], image, imageAlt, github, demo, featured }
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(var(--color-accent-rgb), 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--color-accent-rgb), 0.05) 1px, transparent 1px);
   background-size: 16px 16px;
 }
 .fallback-chart span {
   display: block;
   width: 14px;
-  border-radius: 2px 2px 0 0;
+  border-radius: 4px 4px 0 0;
   background: var(--color-border);
   position: relative;
   z-index: 2;
+  transition: all 0.3s;
 }
-.fallback-chart span:nth-child(2) { background: var(--color-accent); opacity: 0.8; }
-.fallback-chart span:nth-child(3) { background: var(--color-muted); opacity: 0.6; }
-.fallback-chart span:nth-child(4) { background: var(--color-border); }
-.fallback-chart span:nth-child(5) { background: var(--color-accent); }
-.fallback-chart span:nth-child(6) { background: var(--color-muted); opacity: 0.8; }
+.proj-card:hover .fallback-chart span {
+  filter: brightness(1.15) saturate(1.1);
+}
+.fallback-chart span:nth-child(2) { background: var(--color-accent); animation: pulseHeight 3s infinite ease-in-out alternate; }
+.fallback-chart span:nth-child(3) { background: var(--color-secondary); animation: pulseHeight 2.4s infinite ease-in-out alternate-reverse; }
+.fallback-chart span:nth-child(4) { background: var(--color-muted); opacity: 0.35; }
+.fallback-chart span:nth-child(5) { background: var(--color-accent); animation: pulseHeight 3.5s infinite ease-in-out alternate; animation-delay: 0.5s; }
+.fallback-chart span:nth-child(6) { background: var(--color-secondary); }
 
 @keyframes pulseHeight {
   from { transform: scaleY(1); }
@@ -176,24 +183,27 @@ const { title, description, tags = [], image, imageAlt, github, demo, featured }
 .proj-btns {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.65rem;
   margin-top: auto;
-  padding-top: 0.25rem;
+  padding-top: 0.4rem;
 }
 .pub-btn {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--color-accent);
-  border: 1px solid var(--color-border);
-  padding: 0.35rem 0.8rem;
-  border-radius: 4px;
-  background: var(--color-surface);
-  transition: all 0.2s ease;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+  padding: 0.45rem 1rem;
+  border-radius: 99px;
+  background: transparent;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   line-height: 1;
 }
 .pub-btn:hover {
+  background: var(--color-tag-bg);
   border-color: var(--color-accent);
-  background: var(--color-surface2);
+  color: var(--color-accent);
+  box-shadow: 0 4px 10px rgba(var(--color-accent-rgb), 0.08);
+  transform: translateY(-1px);
 }
 </style>

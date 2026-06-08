@@ -64,6 +64,9 @@ const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
 }
 .page-header h1 {
   margin-bottom: 0.7rem;
+  background: linear-gradient(135deg, var(--color-accent) 20%, var(--color-secondary) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .page-sub {
   max-width: 760px;
