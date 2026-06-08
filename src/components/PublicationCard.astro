@@ -44,34 +44,31 @@ const { year, title, authors, journal, doi, paper_url, code_url, abstract, featu
 .pub-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 0.75rem;
+  border-radius: 4px;
   overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .pub-card:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 0 24px rgba(34,197,94,0.12);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 .pub-inner { display: flex; }
-.pub-main  { padding: 1.5rem 1.75rem; flex: 1; display: flex; flex-direction: column; gap: 0.55rem; }
+.pub-main  { padding: 1.05rem 1.1rem 1.15rem; flex: 1; display: flex; flex-direction: column; gap: 0.55rem; }
 
 .pub-meta  { display: flex; align-items: center; gap: 0.6rem; }
-.pub-year  { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--color-muted); text-transform: uppercase; }
+.pub-year  { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: var(--color-muted); text-transform: uppercase; }
 .pub-badge {
-  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--color-accent);
-  background: var(--color-tag-bg);
-  border: 1px solid rgba(34,197,94,0.3);
-  padding: 0.15rem 0.55rem; border-radius: 999px;
 }
 
-.pub-title   { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; line-height: 1.35; }
-.pub-authors { font-size: 0.88rem; color: var(--color-muted); }
-.pub-journal { font-size: 0.85rem; color: var(--color-muted); }
+.pub-title   { font-family: var(--font-heading); font-size: 1rem; font-weight: 800; line-height: 1.3; }
+.pub-authors { font-size: 0.94rem; color: var(--color-muted); line-height: 1.58; }
+.pub-journal { font-size: 0.92rem; color: var(--color-muted); font-family: var(--font-sans); }
 
 .abstract-block {
-  border-left: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-border);
   padding-left: 0.85rem;
 }
 .abstract-block summary {
@@ -81,21 +78,23 @@ const { year, title, authors, journal, doi, paper_url, code_url, abstract, featu
 .abstract-block summary::-webkit-details-marker { display: none; }
 .abstract-block summary::before { content: '▸ '; color: var(--color-accent); }
 .abstract-block[open] summary::before { content: '▾ '; }
-.abstract-text { margin-top: 0.5rem; font-size: 0.875rem; color: var(--color-muted); line-height: 1.7; }
+.abstract-text { margin-top: 0.5rem; font-size: 0.875rem; color: var(--color-muted); line-height: 1.58; }
 
-.pub-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.25rem; }
+.pub-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.25rem; }
 .pub-btn {
   font-size: 0.8rem; font-weight: 600;
   color: var(--color-accent);
-  border: 1px solid rgba(34,197,94,0.3);
-  padding: 0.3rem 0.85rem; border-radius: 0.35rem;
-  background: var(--color-tag-bg);
+  border: none;
+  border-bottom: 1px solid currentColor;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
   text-decoration: none;
 }
 .pub-btn:hover {
-  background: var(--color-accent);
-  color: #000;
-  border-color: var(--color-accent);
+  background: transparent;
+  color: var(--color-accent2);
+  border-color: currentColor;
 }
 </style>

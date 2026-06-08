@@ -39,27 +39,29 @@ const formattedDate = date.toLocaleDateString('en', {
     <img src={heroImage} alt={heroAlt} loading="lazy" />
   </a>
 
-  <div class="blog-topline">
-    <span>{formattedDate}</span>
-    <span>{readingTime}</span>
-    {featured && <span class="blog-badge">Featured</span>}
-  </div>
-
-  <h3 class="blog-title">
-    <a href={href}>{title}</a>
-  </h3>
-
-  <p class="blog-desc">{description}</p>
-
-  {tags.length > 0 && (
-    <div class="blog-tags">
-      {tags.map((tag) => <span class="tag">{tag}</span>)}
+  <div class="blog-body">
+    <div class="blog-topline">
+      <span>{formattedDate}</span>
+      <span>{readingTime}</span>
+      {featured && <span class="blog-badge">Featured</span>}
     </div>
-  )}
 
-  <div class="blog-actions">
-    <a href={href} class="pub-btn">Read article</a>
-    <a href={github} target="_blank" rel="noopener" class="pub-btn">Repo: {repo}</a>
+    <h3 class="blog-title">
+      <a href={href}>{title}</a>
+    </h3>
+
+    <p class="blog-desc">{description}</p>
+
+    {tags.length > 0 && (
+      <div class="blog-tags">
+        {tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    )}
+
+    <div class="blog-actions">
+      <a href={href} class="pub-btn">Read article</a>
+      <a href={github} target="_blank" rel="noopener" class="pub-btn">Repo: {repo}</a>
+    </div>
   </div>
 </article>
 
@@ -67,18 +69,18 @@ const formattedDate = date.toLocaleDateString('en', {
 .blog-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 0.75rem;
+  border-radius: 4px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .blog-card:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 0 24px rgba(34,197,94,0.12);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .blog-media {
@@ -94,11 +96,15 @@ const formattedDate = date.toLocaleDateString('en', {
   height: 100%;
   display: block;
   object-fit: cover;
-  transition: transform 0.25s ease;
+  background: #ffffff;
 }
 
-.blog-card:hover .blog-media img {
-  transform: scale(1.025);
+.blog-body {
+  padding: 1.05rem 1.1rem 1.15rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.7rem;
 }
 
 .blog-topline {
@@ -111,23 +117,20 @@ const formattedDate = date.toLocaleDateString('en', {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-muted);
-  padding: 1.35rem 1.5rem 0;
 }
 
 .blog-badge {
   color: var(--color-accent);
-  background: var(--color-tag-bg);
-  border: 1px solid rgba(34,197,94,0.3);
-  border-radius: 999px;
-  padding: 0.12rem 0.5rem;
+  border: none;
+  padding: 0;
+  font-weight: 700;
 }
 
 .blog-title {
   font-family: var(--font-heading);
-  font-size: 1.18rem;
+  font-size: 1.05rem;
   font-weight: 800;
-  line-height: 1.35;
-  padding: 0 1.5rem;
+  line-height: 1.3;
 }
 
 .blog-title a {
@@ -139,42 +142,47 @@ const formattedDate = date.toLocaleDateString('en', {
 }
 
 .blog-desc {
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   color: var(--color-muted);
-  line-height: 1.7;
-  padding: 0 1.5rem;
+  line-height: 1.58;
 }
 
 .blog-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.4rem 0.85rem;
   margin-top: auto;
-  padding: 0 1.5rem;
+  padding-top: 0.25rem;
+}
+
+.blog-tags .tag::before {
+  content: '#';
+  color: var(--color-accent);
 }
 
 .blog-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0.2rem 1.5rem 1.5rem;
+  gap: 0.8rem;
+  margin-top: 0.25rem;
 }
 
 .pub-btn {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-accent);
-  border: 1px solid rgba(34,197,94,0.3);
-  padding: 0.35rem 0.85rem;
-  border-radius: 0.35rem;
-  background: var(--color-tag-bg);
+  border: none;
+  border-bottom: 1px solid currentColor;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
   text-decoration: none;
 }
 
 .pub-btn:hover {
-  background: var(--color-accent);
-  color: #000;
-  border-color: var(--color-accent);
+  background: transparent;
+  color: var(--color-accent2);
+  border-color: currentColor;
 }
 </style>
