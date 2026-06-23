@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">PerturbGuard audit report visual</title>
+  <desc id="desc">Report-style dashboard with audit status cards, leakage checks, split checks, and warning rows.</desc>
+  <rect width="1200" height="675" fill="#101114"/>
+  <rect x="55" y="52" width="1090" height="571" rx="22" fill="#181a1f" stroke="#30343d" stroke-width="2"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="94" y="116" fill="#f5f5f5" font-size="44" font-weight="800">PerturbGuard</text>
+    <text x="94" y="154" fill="#9ca3af" font-size="22">single-cell perturbation audit report</text>
+    <rect x="872" y="82" width="210" height="54" rx="27" fill="#182e2b" stroke="#1fb6a6" stroke-width="2"/>
+    <circle cx="905" cy="109" r="9" fill="#1fb6a6"/>
+    <text x="927" y="117" fill="#ccfbf1" font-size="20" font-weight="700">7 checks passed</text>
+
+    <g transform="translate(94 205)">
+      <rect width="235" height="128" rx="14" fill="#20242c" stroke="#3b414e"/>
+      <text x="24" y="42" fill="#a7f3d0" font-size="20" font-weight="700">Leakage</text>
+      <text x="24" y="81" fill="#f5f5f5" font-size="38" font-weight="800">LOW</text>
+      <rect x="24" y="100" width="172" height="10" rx="5" fill="#26323a"/>
+      <rect x="24" y="100" width="48" height="10" rx="5" fill="#22c55e"/>
+    </g>
+    <g transform="translate(359 205)">
+      <rect width="235" height="128" rx="14" fill="#20242c" stroke="#3b414e"/>
+      <text x="24" y="42" fill="#bae6fd" font-size="20" font-weight="700">Controls</text>
+      <text x="24" y="81" fill="#f5f5f5" font-size="38" font-weight="800">OK</text>
+      <rect x="24" y="100" width="172" height="10" rx="5" fill="#26323a"/>
+      <rect x="24" y="100" width="132" height="10" rx="5" fill="#06b6d4"/>
+    </g>
+    <g transform="translate(624 205)">
+      <rect width="235" height="128" rx="14" fill="#20242c" stroke="#3b414e"/>
+      <text x="24" y="42" fill="#fef3c7" font-size="20" font-weight="700">Split design</text>
+      <text x="24" y="81" fill="#f5f5f5" font-size="38" font-weight="800">WARN</text>
+      <rect x="24" y="100" width="172" height="10" rx="5" fill="#26323a"/>
+      <rect x="24" y="100" width="108" height="10" rx="5" fill="#f59e0b"/>
+    </g>
+    <g transform="translate(889 205)">
+      <rect width="193" height="128" rx="14" fill="#20242c" stroke="#3b414e"/>
+      <text x="24" y="42" fill="#ddd6fe" font-size="20" font-weight="700">Claims</text>
+      <text x="24" y="81" fill="#f5f5f5" font-size="38" font-weight="800">4</text>
+      <text x="70" y="79" fill="#9ca3af" font-size="20">audited</text>
+    </g>
+
+    <rect x="94" y="382" width="988" height="162" rx="16" fill="#111318" stroke="#30343d"/>
+    <text x="126" y="428" fill="#f5f5f5" font-size="24" font-weight="800">Flagged checks</text>
+    <g font-size="19">
+      <rect x="126" y="459" width="918" height="1" fill="#30343d"/>
+      <text x="126" y="494" fill="#f59e0b" font-weight="700">WARN</text>
+      <text x="225" y="494" fill="#e5e7eb">batch label predicts perturbation stronger than expected</text>
+      <text x="910" y="494" fill="#9ca3af">confounding</text>
+      <rect x="126" y="516" width="918" height="1" fill="#30343d"/>
+      <text x="126" y="551" fill="#22c55e" font-weight="700">PASS</text>
+      <text x="225" y="551" fill="#e5e7eb">leave-perturbation-out split contains no duplicated targets</text>
+      <text x="910" y="551" fill="#9ca3af">split audit</text>
+    </g>
+  </g>
+</svg>

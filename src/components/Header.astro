@@ -247,6 +247,7 @@
       mFresh.addEventListener('click', function() {
         var open = mobMenu.classList.toggle('open');
         mFresh.setAttribute('aria-expanded', String(open));
+        mobMenu.setAttribute('aria-hidden', String(!open));
         var hb = document.getElementById('i-hburg');
         var ic = document.getElementById('i-close');
         if (hb) hb.style.display = open ? 'none' : 'block';
