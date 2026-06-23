@@ -14,19 +14,19 @@ const formatDate = (date: Date) =>
   }).format(date);
 ---
 
-<Layout title="Research Notes - Prithvi Rajan" description="Academic project notes by Prithvi Rajan on protein language models, molecular docking, genomics workflows, and biomedical machine learning.">
+<Layout title="Blog - Prithvi Rajan" description="Short research notes by Prithvi Rajan on computational biology, protein models, molecular docking, genomics workflows, and biomedical machine learning.">
   <div class="container">
     <div class="page-header">
-      <p class="eyebrow">Research notes</p>
-      <h1>Research Notes <span class="accent">.</span></h1>
+      <p class="eyebrow">Blog</p>
+      <h1>Blog <span class="accent">.</span></h1>
       <p class="page-sub">
-        Short technical write-ups from selected computational biology projects. Each note is framed around
-        the research question, methods, evidence, limitations, and what would make the work stronger.
+        Short write-ups from selected computational biology projects: what I tried, what the data or workflow
+        showed, what I would trust, and what still needs work.
       </p>
     </div>
 
     {posts.length > 0 ? (
-      <section class="post-list" aria-label="Research notes">
+      <section class="post-list" aria-label="Blog posts">
         {posts.map(post => (
           <article class="post-card will-animate">
             <div class="post-meta">
@@ -47,7 +47,7 @@ const formatDate = (date: Date) =>
       </section>
     ) : (
       <section class="empty-state">
-        <h2>Research notes coming soon.</h2>
+        <h2>Blog posts coming soon.</h2>
         <p>
           This space will hold technical notes on methods, results, limitations, and reproducible project artifacts.
         </p>

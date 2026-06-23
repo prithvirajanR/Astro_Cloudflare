@@ -1,6 +1,6 @@
 ---
 title: "Epigenetic age and immune context in BRCA subtype classification"
-description: "A technical note on combining DNA methylation clocks, immune deconvolution, RNA expression, methylation features, and clinical metadata for PAM50 breast cancer subtype classification."
+description: "A short note on using methylation clocks, immune deconvolution, RNA expression, and clinical metadata to study PAM50 breast cancer subtype signal."
 date: 2025-08-21
 tags: ["Multi-Omics", "Breast Cancer", "Machine Learning", "R", "Python"]
 github: "https://github.com/prithvirajanR/breast-cancer-epigenetic-aging-immune-multiomics-classification"
@@ -12,39 +12,27 @@ featured: true
 order: 1
 ---
 
-This project asks whether aging-related methylation signals and immune context can add useful information for breast cancer subtype classification. The analysis focuses on TCGA BRCA samples and PAM50 subtype labels, especially Basal, Luminal A, and Luminal B.
+I like this project because it starts with a classifier question and then refuses to stay only a classifier question.
 
-Instead of treating subtype prediction as a single-table machine-learning exercise, the workflow builds multiple data layers: clinical metadata, RNA expression, DNA methylation, epigenetic age acceleration, immune scores, and subtype labels.
+The setup is TCGA BRCA, PAM50 subtype labels, and a mix of clinical, RNA, methylation, epigenetic age, and immune-context features. A plain machine-learning version of the project would ask whether those tables can predict subtype. The more interesting version asks what the useful features might be saying biologically.
 
-## Research question
+The aging piece comes from DNA methylation clocks. A clock estimates biological age from methylation patterns, but in cancer the useful signal is often the gap between methylation age and chronological age. That delta-age value asks whether a tumor looks older or younger than expected.
 
-Do epigenetic age acceleration and immune deconvolution features provide interpretable signal for distinguishing PAM50 breast cancer subtypes?
+<figure>
+  <img src="/projects/brca-classifier-report.svg" alt="Notebook-style BRCA classifier report visual with feature blocks and subtype matrix" />
+  <figcaption>Figure 1. The analysis ties subtype classification to methylation age acceleration and immune-context features.</figcaption>
+</figure>
 
-## Methods
+The report compared Horvath, Hannum, and PhenoAge clocks across subtype groups. The pattern I found most interesting was subtype-specific: Luminal tumors tended to show positive age acceleration, while Basal tumors sat closer to zero or negative delta-age.
 
-DNA methylation clocks estimate biological age from methylation patterns. The relevant cancer feature is not only predicted age, but the difference between methylation age and chronological age. That delta-age value can indicate whether a tumor sample appears biologically older or younger than expected.
+Hannum looked strongest in the downstream linear model, with an approximate R-squared around 0.30 in the report. I would not oversell that number, but it was enough to make the aging signal worth carrying into the rest of the analysis.
 
-The statistical report compared Horvath, Hannum, and PhenoAge clocks across subtype groups. The main pattern in the report was subtype-specific: Luminal tumors showed positive age acceleration across clocks, while Basal tumors clustered closer to zero or negative delta-age. Hannum had the strongest overall fit in the downstream linear model, with the report noting an approximate R-squared around 0.30.
+The immune layer made the story less generic. Resting mast cells and M0 macrophages appeared as strong delta-age correlates, suggesting that some age-accelerated tumors may be carrying an innate or wound-healing-like immune profile. Follicular helper T cells and macrophage patterns also helped separate Luminal and Basal structure.
 
-## Immune context
+That is the part I care about more than raw accuracy. If a model separates subtype groups, the next question is whether the features point back to plausible biology or only to technical shortcuts.
 
-The immune analysis connected delta-age patterns to tumor immune composition. The annotation report compared immune cell scores against delta Hannum age and subtype labels, then brought those features into model interpretation.
+The repo includes notebooks for metadata cleaning, RNA preprocessing, methylation preprocessing, delta-age calculation, immune-score integration, classification, and annotation. It also preserves report artifacts for the epigenetic age statistics and downstream annotation.
 
-Two findings made the project more biologically interesting:
+I would still frame this as an applied multi-omics analysis, not a clinical classifier. The next version should clean up regeneration paths, remove absolute report paths, and make train-test reporting and feature-group sensitivity analysis easier to inspect.
 
-- Resting mast cells and M0 macrophages appeared as strong delta-age correlates, suggesting an innate or wound-healing-like immune profile in age-accelerated tumors.
-- Follicular helper T cells and macrophage patterns helped separate Luminal and Basal signals, while SHAP-style feature importance highlighted immune features that also mattered to subtype decisions.
-
-Those results make the project less about classifier accuracy alone and more about whether the predictive features are biologically interpretable.
-
-## Outputs
-
-The notebooks cover the full workflow: metadata cleaning, RNA preprocessing, methylation preprocessing, delta-age calculation, immune score integration, multiclass classification, and annotation. The repo also includes two report artifacts: an epigenetic age statistical analysis PDF and an annotation PDF.
-
-The result can be read as both a reproducible analysis and a biological interpretation exercise. The modeling task is subtype classification, but the value is in connecting aging, immune state, and breast cancer subtype biology.
-
-## Limitations and next steps
-
-The next step would be to harden the workflow for reuse: replace absolute paths in the R Markdown reports, add a single configuration file for data locations, and make the model evaluation outputs easier to regenerate from a clean checkout.
-
-The current result should be interpreted as an applied multi-omics analysis, not a clinical classifier. A stronger version would include cleaner regeneration instructions, more explicit train/test reporting, and sensitivity analysis across feature groups.
+References and artifacts: the analysis is in the [BRCA multi-omics repository](https://github.com/prithvirajanR/breast-cancer-epigenetic-aging-immune-multiomics-classification).

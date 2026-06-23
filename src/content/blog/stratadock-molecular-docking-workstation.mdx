@@ -1,6 +1,6 @@
 ---
 title: "StrataDock as a reproducible molecular docking workflow"
-description: "A technical note on building StrataDock as a repeatable docking workstation with receptor preparation, ligand handling, pocket definition, Vina/GNINA execution, validation cases, and report exports."
+description: "A short note on building StrataDock as a docking workstation where receptor preparation, pocket choice, docking, validation, and reporting stay connected."
 date: 2026-01-27
 tags: ["Molecular Docking", "Streamlit", "Vina", "GNINA", "Drug Discovery"]
 github: "https://github.com/prithvirajanR/StrataDock"
@@ -12,48 +12,28 @@ featured: true
 order: 3
 ---
 
-StrataDock was developed to make a common docking workflow more repeatable: receptor preparation, ligand handling, binding-site definition, docking execution, scoring, visualization, and report export. The project is best understood as workflow engineering for computational structural biology rather than as a claim that docking scores alone can solve binding prediction.
+Docking is one of those workflows where the scientific question and the file-management problem are almost impossible to separate.
 
-The practical use case is intentionally messy. A user may have a receptor PDB, a ligand file or small ligand library, no reference ligand, and no clean docking box. StrataDock provides a structured path from input files to ranked outputs.
+You are not only asking whether a ligand might sit sensibly in a pocket. You are also asking whether the receptor was prepared consistently, whether the ligand format survived conversion, whether the docking box means what you think it means, and whether the final score came from a run you can reproduce.
+
+StrataDock was built around that messiness. It is not trying to make docking scores more powerful than they are. It is trying to make the path from structure files to ranked poses easier to inspect.
 
 ![StrataDock run screen showing docking configuration and terminal progress](/blog/stratadock-run.jpg)
 
-## Workflow scope
+The application supports a few different ways of defining the binding site, because real docking projects rarely start from the same place. If a co-crystal ligand exists, reference-ligand mode is the cleanest path. If only the receptor is available, fpocket can suggest candidate pockets. If coordinates are already known, manual box mode keeps the user in control.
 
-The workflow covers receptor cleanup, ligand preparation, binding-site definition, docking, scoring, visualization, and export. It supports AutoDock Vina by default and GNINA as an optional CPU/CUDA path.
+That separation matters. A docking engine can only score the search space it is given, so pocket definition is not a UI detail. It is part of the experiment.
 
-Binding-site setup is deliberately flexible:
-
-- reference ligand mode for redocking and known binding sites
-- fpocket mode when only a receptor structure is available
-- manual box mode when coordinates are already known
-
-This is deliberately broader than a single demonstration dataset. Real docking work often begins with incomplete structural context, so the application separates the binding-site decision from the docking engine itself.
-
-## Validation design
-
-The repo includes five co-crystal redocking validation systems:
-
-- HIV protease, 1HSG
-- EGFR kinase, 1M17
-- ABL kinase, 1IEP
-- trypsin, 3PTB
-- HSV thymidine kinase, 1KIM
-
-Each validation case includes receptor files, native ligand files, ligand SDF inputs, docking box coordinates, and checks for pose files, docking scores, and pose-level RMSD thresholds.
-
-The validation set is the most important engineering result. It turns StrataDock from a user-interface wrapper into a workflow with testable behavior and known reference cases.
+For validation, I included five co-crystal redocking systems: HIV protease, EGFR kinase, ABL kinase, trypsin, and HSV thymidine kinase. Each case has receptor files, native ligands, ligand inputs, docking box coordinates, and checks around pose output, docking score, and pose-level RMSD.
 
 ![StrataDock ADMET and docking result table](/blog/stratadock-admet.jpg)
 
-## Implementation notes
+The validation set is the part I trust most as an engineering result. It turns StrataDock from a wrapper around Vina or GNINA into a workflow with reference cases and expected behavior.
 
-The repo is split into core modules for docking, reports, pockets, receptors, ligands, sessions, and visualization. The Streamlit app is large, but the important logic lives in reusable modules under `src/stratadock/core`.
+The repo structure follows that idea. The Streamlit surface is the thing a user sees, but the reusable logic sits under core modules for receptors, ligands, pockets, docking, reports, sessions, and visualization. That makes the project easier to test than if every decision lived inside the UI script.
 
-The test suite covers ADMET-style profiles, batch runs, binding boxes, diagnostics, GNINA handling, pocket prediction, receptor and ligand preparation, reports, sessions, UI tables, and validation data.
+I would still be cautious about the biology. Docking should be treated as triage, not as proof of binding. A reasonable pose and a favorable score are useful clues, but they do not replace experimental validation, better scoring, or interface-level analysis.
 
-## Limitations and next steps
+The next version I would want is more explicit interface-quality reporting: not only overall RMSD and score, but contact recovery, pocket occupancy, and clearer redocking summaries.
 
-Docking output should be treated as triage, not a definitive binding claim. The validation cases help confirm that the pipeline behaves sensibly on known systems, but they do not establish broad predictive accuracy across all receptors, ligands, or scoring functions.
-
-The next version should continue separating core workflow logic from the Streamlit surface, add more visual and command-line regression checks, and report interface-quality metrics more explicitly for validation cases.
+References and artifacts: the application code is in the [StrataDock repository](https://github.com/prithvirajanR/StrataDock).

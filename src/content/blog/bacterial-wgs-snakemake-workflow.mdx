@@ -1,6 +1,6 @@
 ---
 title: "Bacterial WGS workflow design with Snakemake"
-description: "A technical note on a bacterial whole-genome sequencing workflow that moves from raw reads to assembly, polishing, quality control, annotation, optional screening, and phylogeny."
+description: "A short note on designing a bacterial whole-genome sequencing workflow that connects reads, assemblies, annotations, screening, and phylogeny."
 date: 2025-03-14
 tags: ["Snakemake", "Bacterial WGS", "Genomics", "Reproducibility", "Conda"]
 github: "https://github.com/prithvirajanR/bacteria-genome-analysis-workflow"
@@ -12,43 +12,24 @@ featured: true
 order: 4
 ---
 
-This repository defines a Snakemake workflow for bacterial whole-genome sequencing analysis. The workflow is designed around a common need in microbial genomics: turning paired-end reads, and optionally long reads, into assemblies, quality reports, annotations, screening outputs, and phylogenetic summaries.
+This project is less about inventing a new microbial genomics method and more about making a common analysis path less fragile.
 
-The value of the project is not a new algorithm. It is the explicit connection of many established tools into a reproducible workflow with declared inputs, environments, and output targets.
+In bacterial whole-genome sequencing, the individual tools are familiar: QC, trimming, assembly, polishing, annotation, screening, and phylogeny. The hard part is often the handoff between them. Which files are expected? Which samples have long reads? Which outputs should exist at the end? Which environment was used for each tool?
 
-## Workflow design
+The workflow uses Snakemake to make those handoffs explicit.
 
-The workflow starts from a sample sheet and chooses the assembly path based on whether long reads are available.
+![Bacterial WGS workflow diagram from raw reads through QC, assembly, annotation, screening, and reports](/blog/bactoflow-workflow.svg)
 
-Samples with long reads go through a hybrid assembly route. Samples without long reads use a short-read assembly route. After assembly, the pipeline moves into polishing, quality control, annotation, screening, comparative genomics, and reporting.
+The first decision is whether a sample has long reads. If it does, the workflow can use a hybrid assembly route. If not, it follows a short-read assembly route. After that, the pipeline moves through polishing, assembly quality control, annotation, optional screening, comparative genomics, and reporting.
 
-The final targets include:
+The final targets are deliberately review-friendly: MultiQC reports, long-read QC summaries, QUAST reports, BUSCO summaries, Bakta annotation files, optional MLST/AMR/virulence/plasmid screening outputs, a screening summary spreadsheet, and core-genome tree files.
 
-- MultiQC reports
-- long-read QC summaries
-- QUAST reports
-- BUSCO summaries
-- Bakta annotation GFF3 files
-- optional MLST, AMR, virulence, and plasmid screening outputs
-- a screening summary Excel report
-- core-genome tree files and visualizations
+That output design matters. A workflow is not only for the person who runs it. It is also for the collaborator who wants a report, the reviewer who wants to understand the analysis path, and the future version of you who has to rerun it.
 
-The output design matters because microbial genomics results are often reviewed by people with different preferences: command-line users, report readers, and collaborators who need spreadsheet summaries.
+Snakemake fits because it turns the analysis into a graph. Conda environments are split by module, so QC, assembly, annotation, screening, and reporting do not all depend on one overloaded environment.
 
-## Why Snakemake fits the problem
+I would not call the current repo a finished production pipeline yet. The missing piece is an easy public test run. A tiny dataset and CI dry-run would make the workflow much easier to validate from scratch.
 
-Snakemake gives the project a clear contract: what files go in, what files come out, and which rule creates each output. Conda environments are split per module, so tools for QC, assembly, annotation, screening, and reporting can be managed separately.
+As a research-engineering artifact, though, it shows the thing I wanted it to show: clear inputs, modular rules, declared outputs, and a path from reads to files that someone else can inspect.
 
-That matters in bacterial genomics because workflows tend to become fragile when every tool is installed into one environment and every sample is handled manually.
-
-## Evidence and outputs
-
-The workflow diagram and repository structure document the expected analysis path. The final targets include QC reports, assemblies, annotations, screening summaries, and core-genome phylogeny files.
-
-Even though raw FASTQ files and generated results are not tracked in Git, the pipeline records the expected outputs in the Snakefile. That makes the repo understandable without shipping huge data files.
-
-## Limitations and next steps
-
-The next version could add a small public test dataset and a CI dry-run so new users can verify the workflow immediately. I would also add example rendered reports to the site so the output structure is visible without running the full pipeline.
-
-As a research-engineering artifact, the repository demonstrates modular rules, clear configuration, sample-sheet driven execution, and outputs that support both analysis and review.
+References and artifacts: the workflow is in the [bacterial genome analysis repository](https://github.com/prithvirajanR/bacteria-genome-analysis-workflow).

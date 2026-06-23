@@ -22,19 +22,14 @@ const formatDate = (date: Date) =>
   }).format(date);
 ---
 
-<Layout title={`${post.data.title} - Research Notes | Prithvi Rajan`} description={post.data.description} ogImage={post.data.heroImage}>
+<Layout title={`${post.data.title} - Blog | Prithvi Rajan`} description={post.data.description} ogImage={post.data.heroImage}>
   <article class="container blog-post">
-    <a href="/blog" class="back-link">Back to research notes</a>
+    <a href="/blog" class="back-link">Back to Blog</a>
     <header class="post-header">
-      <p class="eyebrow">Research note</p>
+      <p class="eyebrow">Blog</p>
       <h1>{post.data.title}</h1>
       <div class="post-meta">
         <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-        <span>{post.data.readingTime}</span>
-        <a href={post.data.github} target="_blank" rel="noopener">{post.data.repo}</a>
-      </div>
-      <div class="post-tags" aria-label="Topics">
-        {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
       </div>
     </header>
 
@@ -46,8 +41,8 @@ const formatDate = (date: Date) =>
 
 <style>
 .blog-post {
-  max-width: 1184px;
-  padding-top: 3.6rem;
+  max-width: 920px;
+  padding-top: 3.8rem;
 }
 .back-link {
   display: inline-block;
@@ -55,11 +50,11 @@ const formatDate = (date: Date) =>
   font-size: 0.86rem;
   font-weight: 600;
   color: var(--color-accent);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 .post-header {
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 2rem;
+  padding-bottom: 2.2rem;
   margin-bottom: 2.4rem;
 }
 .eyebrow {
@@ -72,45 +67,31 @@ const formatDate = (date: Date) =>
   margin-bottom: 1rem;
 }
 .post-header h1 {
-  max-width: 1120px;
-  margin-bottom: 0.8rem;
+  max-width: 860px;
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 5.2vw, 3.15rem);
+  line-height: 1.08;
 }
 .post-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem 0.8rem;
   font-family: var(--font-sans);
   font-size: 0.86rem;
   color: var(--color-muted);
 }
-.post-meta span::before,
-.post-meta a::before {
-  content: '/';
-  color: var(--color-border);
-  margin-right: 0.8rem;
-}
-.post-meta a {
-  color: var(--color-accent);
-  border-bottom: 1px solid currentColor;
-}
-.post-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem 0.85rem;
-  margin-top: 0.9rem;
-}
 .post-body {
-  max-width: 1120px;
+  max-width: 860px;
   padding-bottom: 4rem;
 }
 .post-body :global(p) {
-  margin-bottom: 1.15rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.72;
 }
 .post-body :global(figure) {
-  margin: 2rem 0 2.25rem;
+  margin: 2.2rem 0 2.45rem;
 }
 .post-body :global(.wide-embed) {
-  width: min(1120px, calc(100vw - 2.4rem));
+  width: min(960px, calc(100vw - 2.4rem));
   margin-left: 50%;
   transform: translateX(-50%);
 }
@@ -135,8 +116,8 @@ const formatDate = (date: Date) =>
   line-height: 1.55;
 }
 .post-body :global(h2) {
-  font-size: 1.45rem;
-  margin: 2.1rem 0 0.85rem;
+  font-size: 1.25rem;
+  margin: 2.35rem 0 0.9rem;
 }
 .post-body :global(h3) {
   margin: 1.65rem 0 0.65rem;
