@@ -1,13 +1,12 @@
 ---
-// 404.astro
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="404 — Page Not Found · Prithvi Rajan">
+<Layout title="404 - Page Not Found - Prithvi Rajan">
   <div class="container not-found">
     <h1>404</h1>
-    <p>This page doesn't exist — maybe it moved, maybe it never did.</p>
-    <a href="/" class="btn">← Back to home</a>
+    <p>This page does not exist.</p>
+    <a href="/" class="btn">Back to home</a>
   </div>
 </Layout>
 
@@ -17,15 +16,13 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 50vh;
+    min-height: 55vh;
     text-align: center;
     gap: 1rem;
   }
   .not-found h1 {
-    font-family: var(--font-serif);
     font-size: 6rem;
-    font-weight: 700;
-    color: var(--color-border);
+    color: var(--color-accent);
     line-height: 1;
   }
   .not-found p {

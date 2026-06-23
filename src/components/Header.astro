@@ -2,26 +2,31 @@
 ---
 
 <header class="site-header">
-  <div class="hdr-inner container-wide">
-    <a href="/" class="brand" aria-label="Home">
-      <span class="brand-mark">PR</span>
-      <span>Prithvi Rajan</span>
-    </a>
+  <div class="hdr-inner container">
+    <div class="brand-stack">
+      <a href="/" class="brand" aria-label="Home">
+        <img class="brand-logo" src="/pr-logo.svg" alt="" width="54" height="56" />
+        <span>Prithvi Rajan</span>
+      </a>
 
-    <nav class="desk-nav" aria-label="Main navigation">
-      <a href="/" class="nav-link" data-path="/">About</a>
-      <a href="/journey" class="nav-link" data-path="/journey">Journey</a>
-      <a href="/publications" class="nav-link" data-path="/publications">Research</a>
-      <a href="/projects" class="nav-link" data-path="/projects">Projects</a>
-      <a href="/blog" class="nav-link" data-path="/blog">Blog</a>
-      <a href="/Prithivi_Rajan_CV.pdf" class="nav-link" target="_blank" rel="noopener">Résumé</a>
-    </nav>
+      <nav class="desk-nav" aria-label="Main navigation">
+        <a href="/" class="nav-link" data-path="/"><span>About</span></a>
+        <a href="/projects" class="nav-link" data-path="/projects"><span>Projects</span></a>
+        <a href="/publications" class="nav-link" data-path="/publications"><span>Research</span></a>
+        <a href="/blog" class="nav-link" data-path="/blog"><span>Blog</span></a>
+        <a href="/journey" class="nav-link" data-path="/journey"><span>Resume</span></a>
+      </nav>
+    </div>
 
-    <div class="header-actions">
-      <button class="theme-dot" aria-label="Switch to dark theme" type="button" title="Switch theme">☼</button>
+    <div class="hdr-controls">
+      <button id="dark-toggle" class="icon-btn" aria-label="Toggle light/dark mode">
+        <svg id="i-sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+        <svg id="i-moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A8.5 8.5 0 1 1 11.21 3 6.5 6.5 0 0 0 21 12.79z"/></svg>
+      </button>
+
       <button id="mob-toggle" class="icon-btn mob-only" aria-label="Open menu" aria-expanded="false">
-        <svg id="i-hburg" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        <svg id="i-close" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg id="i-hburg" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="i-close" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
   </div>
@@ -29,103 +34,117 @@
 
 <div id="mob-menu" class="mob-menu" aria-hidden="true">
   <a href="/" class="mob-link">About</a>
-  <a href="/journey" class="mob-link">Journey</a>
-  <a href="/publications" class="mob-link">Research</a>
   <a href="/projects" class="mob-link">Projects</a>
+  <a href="/publications" class="mob-link">Research</a>
   <a href="/blog" class="mob-link">Blog</a>
-  <a href="/Prithivi_Rajan_CV.pdf" class="mob-link" target="_blank" rel="noopener">Résumé</a>
+  <a href="/journey" class="mob-link">Resume</a>
 </div>
 
 <style is:global>
 .hdr-inner {
   width: 100%;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1rem;
+  padding-top: 1.7rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
+.brand-stack {
+  display: block;
+}
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  color: var(--color-text);
+  gap: 1.15rem;
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.45rem;
   font-weight: 800;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-}
-
-.brand-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  color: white;
-  background: linear-gradient(135deg, var(--color-text), var(--color-blue));
-  border-radius: 8px;
-  font-size: 0.82rem;
+  color: var(--color-text);
   letter-spacing: 0;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+.brand:hover { opacity: 0.75; }
+.brand-logo {
+  display: block;
+  width: 54px;
+  height: 56px;
+  object-fit: contain;
+  object-position: center;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .desk-nav {
   display: flex;
   align-items: center;
-  gap: 0.2rem;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 0.55rem;
+  margin-left: 75px;
 }
 
 .nav-link {
-  color: var(--color-muted);
-  border-radius: 7px;
-  padding: 0.48rem 0.85rem;
-  font-family: var(--font-heading);
-  font-size: 0.84rem;
-  font-weight: 700;
-  transition: color 0.15s ease, background 0.15s ease;
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  padding: 0 0.9rem;
+  border: 0;
+  border-left: 1px solid var(--color-accent);
+  border-radius: 0;
+  border-bottom-color: transparent;
+  line-height: 1.1;
+  transition: color 0.15s;
 }
-
-.nav-link:hover,
-.nav-link[aria-current="page"] {
-  color: var(--color-text);
+.nav-link:first-child { padding-left: 0; border-left: 0; }
+.nav-link:hover {
+  color: var(--color-accent2);
   background: transparent;
-  box-shadow: inset 0 -2px 0 var(--color-accent);
+}
+.nav-link[aria-current="page"] {
+  color: var(--color-accent);
+  background: transparent;
+  box-shadow: none;
+}
+.nav-link[aria-current="page"] span {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.08rem;
 }
 
-.header-actions {
+.hdr-controls {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  padding-top: 0.7rem;
 }
 
-.theme-dot,
 .icon-btn {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  color: var(--color-text);
-  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
-}
-
-.theme-dot {
+  border-radius: 4px;
+  background: var(--color-surface2);
   color: var(--color-muted);
-  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: none;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
 }
-
-.theme-dot:hover,
 .icon-btn:hover {
-  color: var(--color-text);
-  border-color: var(--color-blue);
-  background: var(--color-blue-soft);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: var(--color-surface2);
 }
 
 .mob-only { display: none; }
@@ -135,78 +154,87 @@
   top: var(--header-height);
   left: 0;
   right: 0;
-  z-index: 90;
-  display: flex;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.5rem 2rem 1.25rem;
+  display: none;
   flex-direction: column;
   gap: 0.15rem;
-  padding: 0.75rem 1.25rem 1.25rem;
-  background: color-mix(in oklch, var(--color-bg) 92%, var(--color-surface));
-  border-bottom: 1px solid var(--color-border);
-  transform: translateY(-120%);
-  transition: transform 0.22s ease;
+  z-index: 49;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(calc(-100% - 1rem));
+  transition: transform 0.25s ease, visibility 0.25s ease;
 }
-
-.mob-menu.open { transform: translateY(0); }
+.mob-menu.open {
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
 
 .mob-link {
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  font-weight: 500;
   color: var(--color-text);
-  border-bottom: 1px solid color-mix(in oklch, var(--color-border) 60%, transparent);
-  padding: 0.78rem 0;
-  font-family: var(--font-heading);
-  font-weight: 700;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: color 0.15s;
 }
-
 .mob-link:last-child { border-bottom: none; }
+.mob-link:hover,
+.mob-link[aria-current="page"] { color: var(--color-accent); }
 
-@media (max-width: 720px) {
+@media (max-width: 700px) {
+  .hdr-inner {
+    align-items: center;
+    padding-top: 1rem;
+  }
+  .brand-stack {
+    display: block;
+  }
+  .brand {
+    font-size: 1.05rem;
+  }
+  .brand-logo {
+    width: 40px;
+    height: 42px;
+  }
   .desk-nav { display: none; }
-  .mob-only { display: inline-grid; }
+  .mob-only { display: flex; }
+  .mob-menu { display: flex; }
 }
 </style>
 
 <script is:inline>
+  function syncHeaderIcons() {
+    var isDark = document.documentElement.classList.contains('dark');
+    var sun = document.getElementById('i-sun');
+    var moon = document.getElementById('i-moon');
+    if (sun) sun.style.display = isDark ? 'block' : 'none';
+    if (moon) moon.style.display = isDark ? 'none' : 'block';
+  }
+
   function initHeader() {
-    var root = document.documentElement;
-    var themeBtn = document.querySelector('.theme-dot');
-    var storedTheme = null;
-    try {
-      storedTheme = localStorage.getItem('theme');
-    } catch (error) {}
+    syncHeaderIcons();
 
-    function applyTheme(theme, persist) {
-      root.dataset.theme = theme;
-      if (persist) {
-        try {
-          localStorage.setItem('theme', theme);
-        } catch (error) {}
-      }
-      if (themeBtn) {
-        var nextTheme = theme === 'dark' ? 'light' : 'dark';
-        themeBtn.textContent = theme === 'dark' ? '☾' : '☼';
-        themeBtn.setAttribute('aria-label', 'Switch to ' + nextTheme + ' theme');
-        themeBtn.setAttribute('aria-pressed', String(theme === 'dark'));
-      }
-    }
-
-    if (!root.dataset.theme) {
-      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      applyTheme(storedTheme || (prefersDark ? 'dark' : 'light'), false);
-    } else {
-      applyTheme(root.dataset.theme, false);
-    }
-
-    if (themeBtn && themeBtn.dataset.bound !== 'true') {
-      themeBtn.dataset.bound = 'true';
-      themeBtn.addEventListener('click', function() {
-        applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true);
+    var themeBtn = document.getElementById('dark-toggle');
+    if (themeBtn) {
+      var themeFresh = themeBtn.cloneNode(true);
+      themeBtn.parentNode.replaceChild(themeFresh, themeBtn);
+      themeFresh.addEventListener('click', function() {
+        var nowDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+        syncHeaderIcons();
       });
+      syncHeaderIcons();
     }
 
     var path = window.location.pathname;
     document.querySelectorAll('.nav-link, .mob-link').forEach(function(link) {
       var href = link.getAttribute('href');
       var active = (href === '/' && path === '/') ||
-                   (href !== '/' && path.startsWith(href));
+        (href !== '/' && path.startsWith(href));
       if (active) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     });
@@ -214,12 +242,11 @@
     var mobBtn = document.getElementById('mob-toggle');
     var mobMenu = document.getElementById('mob-menu');
     if (mobBtn && mobMenu) {
-      var fresh = mobBtn.cloneNode(true);
-      mobBtn.parentNode.replaceChild(fresh, mobBtn);
-      fresh.addEventListener('click', function() {
+      var mFresh = mobBtn.cloneNode(true);
+      mobBtn.parentNode.replaceChild(mFresh, mobBtn);
+      mFresh.addEventListener('click', function() {
         var open = mobMenu.classList.toggle('open');
-        fresh.setAttribute('aria-expanded', String(open));
-        mobMenu.setAttribute('aria-hidden', String(!open));
+        mFresh.setAttribute('aria-expanded', String(open));
         var hb = document.getElementById('i-hburg');
         var ic = document.getElementById('i-close');
         if (hb) hb.style.display = open ? 'none' : 'block';
