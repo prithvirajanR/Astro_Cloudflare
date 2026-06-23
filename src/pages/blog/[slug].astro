@@ -22,13 +22,20 @@ const formatDate = (date: Date) =>
   }).format(date);
 ---
 
-<Layout title={`${post.data.title} - Blog | Prithvi Rajan`} description={post.data.description}>
+<Layout title={`${post.data.title} - Research Notes | Prithvi Rajan`} description={post.data.description} ogImage={post.data.heroImage}>
   <article class="container blog-post">
-    <a href="/blog" class="back-link">Back to Blog</a>
+    <a href="/blog" class="back-link">Back to research notes</a>
     <header class="post-header">
-      <p class="eyebrow">Blog</p>
+      <p class="eyebrow">Research note</p>
       <h1>{post.data.title}</h1>
-      <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      <div class="post-meta">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        <span>{post.data.readingTime}</span>
+        <a href={post.data.github} target="_blank" rel="noopener">{post.data.repo}</a>
+      </div>
+      <div class="post-tags" aria-label="Topics">
+        {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+      </div>
     </header>
 
     <div class="post-body">
@@ -68,10 +75,29 @@ const formatDate = (date: Date) =>
   max-width: 1120px;
   margin-bottom: 0.8rem;
 }
-.post-header time {
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.8rem;
   font-family: var(--font-sans);
   font-size: 0.86rem;
   color: var(--color-muted);
+}
+.post-meta span::before,
+.post-meta a::before {
+  content: '/';
+  color: var(--color-border);
+  margin-right: 0.8rem;
+}
+.post-meta a {
+  color: var(--color-accent);
+  border-bottom: 1px solid currentColor;
+}
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.85rem;
+  margin-top: 0.9rem;
 }
 .post-body {
   max-width: 1120px;

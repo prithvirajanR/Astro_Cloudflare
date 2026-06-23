@@ -1,6 +1,6 @@
 ---
-title: "Using ESM Protein Language Models to Study APP Variant Effects"
-description: "A deep-learning project comparing ESM scoring methods against experimental APP deep mutational scanning data, including epistasis and synthetic fitness landscape analysis."
+title: "ESM protein language models for APP variant-effect prediction"
+description: "A technical note on benchmarking ESM-1v and ESM-2 scoring methods against APP deep-mutational scanning data, with emphasis on epistasis, score construction, and interpretation limits."
 date: 2024-11-12
 tags: ["Protein ML", "ESM", "Deep Learning", "PyTorch", "Variant Effects"]
 github: "https://github.com/prithvirajanR/ESM-DeepLearning"
@@ -12,13 +12,17 @@ featured: true
 order: 2
 ---
 
-Protein language models are exciting because they learn statistical structure from protein sequences without being explicitly trained on every downstream biological task. This repo tests that promise on a concrete benchmark: mutation-effect prediction for human Amyloid Precursor Protein, also known as APP or A4_HUMAN.
+This project evaluates whether protein language model scores can recover experimentally measured mutation effects in human Amyloid Precursor Protein (APP/A4_HUMAN). The goal is not to claim that a model understands APP biology in a mechanistic sense, but to test how far sequence-derived scores can be pushed against a real deep-mutational scanning benchmark.
 
-The dataset comes from ProteinGym and contains about 14,483 APP variants from the A4_HUMAN_Seuma_2021 deep mutational scanning assay. That scale made it useful for comparing scoring methods across single variants, double mutants, epistasis, and synthetic landscape exploration.
+The dataset is `A4_HUMAN_Seuma_2021` from ProteinGym, with approximately 14,483 APP variants. Its mix of single and double mutants makes it useful for comparing both direct variant-effect prediction and epistasis-related behavior.
 
-## What was benchmarked
+## Research question
 
-The repo compares ESM-1v and ESM-2 models with several scoring strategies:
+Can zero-shot ESM scores provide a useful ranking of APP variants, and do different scoring formulations behave differently on single-mutant, double-mutant, and synthetic-landscape analyses?
+
+## Methods
+
+The repository compares ESM-1v and ESM-2 models using several scoring strategies:
 
 - masked log-likelihood ratio
 - pseudo-log-likelihood
@@ -27,11 +31,11 @@ The repo compares ESM-1v and ESM-2 models with several scoring strategies:
 - ensemble-style masked scores
 - mutant marginal probability
 
-This is important because the model itself is only one part of the story. How a mutation is scored can change the ranking of variants dramatically.
+The scoring function is treated as part of the experimental design. Two models with the same architecture family can produce different rankings depending on whether the analysis uses masked probabilities, whole-sequence pseudo-likelihood, or embedding geometry.
 
-## Results worth highlighting
+## Evidence
 
-The metrics artifact reports Spearman correlations against experimental scores across 14,483 variants. The strongest runs were in the low-to-mid 0.4 range, which is realistic for this kind of zero-shot protein variant-effect prediction.
+The metrics artifacts report Spearman correlations against experimental DMS scores across the APP variant set. The strongest runs were in the low-to-mid 0.4 range, which is plausible for zero-shot protein variant-effect prediction and should be interpreted as partial ranking signal rather than direct functional explanation.
 
 Examples from the results file:
 
@@ -40,16 +44,16 @@ Examples from the results file:
 - The top predictions.csv summary reached rho = 0.4265 with P100 = 11%.
 - ESM2 650M EntropyMLLR reached rho = 0.4196.
 
-The trend was useful: larger ESM-2 models and stronger scoring formulations generally performed better than simpler baselines, but not every larger-model or more complex method won automatically.
+The main pattern is methodological rather than simply architectural: larger ESM-2 models and stronger scoring formulations often improved performance, but complexity did not guarantee a better result.
 
 ## Beyond a leaderboard
 
-The project also includes epistasis analysis and synthetic fitness landscape exploration. That matters because APP has many double mutants in this benchmark, and double-mutant behavior is often where simple additive assumptions start to fail.
+The project also includes epistasis analysis and synthetic fitness-landscape exploration. This matters because double-mutant behavior is where additive assumptions can fail, and where a language model score may capture useful context without being a full causal model of function.
 
-The repo preserves figures, CSV outputs, HPC scripts, and a compiled report. That makes the work easier to review later: the results are not just in console output, but in artifacts that tell the story of the experiment.
+The repository preserves figures, CSV outputs, HPC scripts, and a compiled report. That makes the result auditable: the work is not only a set of console outputs, but a collection of artifacts that can be reviewed after the run.
 
-## What I learned
+## Limitations and next steps
 
-The biggest lesson was that protein language models are powerful but not magic. They need careful scoring, careful validation against experimental data, and careful interpretation of what the correlation actually means.
+These results should not be overread as proof of mechanistic understanding. A moderate rank correlation can still be useful for prioritization, but it does not replace experimental validation or structural interpretation.
 
-For portfolio purposes, this project is a strong example of applied ML in biology: it has a real dataset, model comparisons, quantitative results, and a biological interpretation layer around epistasis and variant effects.
+The next improvement would be a cleaner ablation table separating model scale, scoring formulation, variant class, and evaluation metric. That would make it easier to distinguish real model signal from scoring artifacts.

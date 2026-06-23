@@ -14,31 +14,42 @@ const formatDate = (date: Date) =>
   }).format(date);
 ---
 
-<Layout title="Blog - Prithvi Rajan" description="Blog posts by Prithvi Rajan about bioinformatics, projects, research, and learning.">
+<Layout title="Research Notes - Prithvi Rajan" description="Academic project notes by Prithvi Rajan on protein language models, molecular docking, genomics workflows, and biomedical machine learning.">
   <div class="container">
     <div class="page-header">
-      <p class="eyebrow">Blog</p>
-      <h1>Blog <span class="accent">.</span></h1>
+      <p class="eyebrow">Research notes</p>
+      <h1>Research Notes <span class="accent">.</span></h1>
       <p class="page-sub">
-        Posts about what I am building, learning, and thinking through in bioinformatics and research.
+        Short technical write-ups from selected computational biology projects. Each note is framed around
+        the research question, methods, evidence, limitations, and what would make the work stronger.
       </p>
     </div>
 
     {posts.length > 0 ? (
-      <section class="post-list" aria-label="Blog posts">
+      <section class="post-list" aria-label="Research notes">
         {posts.map(post => (
           <article class="post-card will-animate">
-            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+            <div class="post-meta">
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              <span>{post.data.readingTime}</span>
+            </div>
             <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
             <p>{post.data.description}</p>
+            <div class="post-tags" aria-label="Topics">
+              {post.data.tags.slice(0, 4).map(tag => <span class="tag">{tag}</span>)}
+            </div>
+            <div class="post-links">
+              <a href={`/blog/${post.id}`}>Read note</a>
+              <a href={post.data.github} target="_blank" rel="noopener">Repository</a>
+            </div>
           </article>
         ))}
       </section>
     ) : (
       <section class="empty-state">
-        <h2>Posts coming soon.</h2>
+        <h2>Research notes coming soon.</h2>
         <p>
-          This space will hold updates on projects, research, and things I am learning along the way.
+          This space will hold technical notes on methods, results, limitations, and reproducible project artifacts.
         </p>
       </section>
     )}
@@ -47,7 +58,7 @@ const formatDate = (date: Date) =>
 
 <style>
 .page-header {
-  padding: 3.6rem 0 2.4rem;
+  padding: 2.4rem 2rem 2rem;
   border-bottom: 1px solid var(--color-border);
   margin-bottom: 2.5rem;
 }
@@ -68,25 +79,33 @@ const formatDate = (date: Date) =>
 }
 .post-list {
   display: grid;
-  gap: 1rem;
-  max-width: 860px;
+  gap: 1.1rem;
+  max-width: 100%;
   padding-bottom: 3.2rem;
+  padding-inline: 2rem;
 }
 .post-card,
 .empty-state {
-  padding: 1.25rem 1.35rem;
+  padding: 1.25rem 1.35rem 1.2rem;
   border: 1px solid var(--color-border);
   border-radius: 4px;
   background: var(--color-surface);
 }
-.post-card time {
-  display: block;
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.75rem;
   font-family: var(--font-sans);
   font-size: 0.76rem;
   font-weight: 600;
   color: var(--color-muted);
   text-transform: uppercase;
   margin-bottom: 0.65rem;
+}
+.post-meta span::before {
+  content: '/';
+  color: var(--color-border);
+  margin-right: 0.75rem;
 }
 .post-card h2,
 .empty-state h2 {
@@ -103,8 +122,30 @@ const formatDate = (date: Date) =>
   font-size: 0.96rem;
   line-height: 1.7;
 }
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  margin-top: 0.85rem;
+}
+.post-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.95rem;
+}
+.post-links a {
+  color: var(--color-accent);
+  font-size: 0.86rem;
+  font-weight: 600;
+  border-bottom: 1px solid currentColor;
+}
 .empty-state {
   max-width: 760px;
   margin-bottom: 3.2rem;
+}
+@media (max-width: 760px) {
+  .page-header,
+  .post-list { padding-inline: 0; }
 }
 </style>

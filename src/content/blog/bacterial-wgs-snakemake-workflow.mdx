@@ -1,22 +1,22 @@
 ---
-title: "Bactoflow-WGS: A Reproducible Bacterial Genome Analysis Pipeline"
-description: "A Snakemake workflow for bacterial whole-genome sequencing that moves from raw reads to assembly, QC, annotation, screening, pangenome analysis, and phylogeny."
+title: "Bacterial WGS workflow design with Snakemake"
+description: "A technical note on a bacterial whole-genome sequencing workflow that moves from raw reads to assembly, polishing, quality control, annotation, optional screening, and phylogeny."
 date: 2024-04-09
 tags: ["Snakemake", "Bacterial WGS", "Genomics", "Reproducibility", "Conda"]
-github: "https://github.com/prithvirajanR/bactoflow-wgs"
-repo: "bactoflow-wgs"
+github: "https://github.com/prithvirajanR/bacteria-genome-analysis-workflow"
+repo: "bacteria-genome-analysis-workflow"
 heroImage: "/blog/bactoflow-workflow.svg"
-heroAlt: "Bactoflow WGS workflow diagram from raw reads through QC, assembly, annotation, screening, and reports"
+heroAlt: "Bacterial WGS workflow diagram from raw reads through QC, assembly, annotation, screening, and reports"
 readingTime: "6 min read"
 featured: true
 order: 4
 ---
 
-Bactoflow-WGS is a reproducible Snakemake pipeline for bacterial whole-genome sequencing. It was developed for a mixed bacterial dataset with Klebsiella pneumoniae hybrid assemblies and Escherichia coli short-read assemblies, but the workflow is configurable for other bacterial WGS projects.
+This repository defines a Snakemake workflow for bacterial whole-genome sequencing analysis. The workflow is designed around a common need in microbial genomics: turning paired-end reads, and optionally long reads, into assemblies, quality reports, annotations, screening outputs, and phylogenetic summaries.
 
-The project is useful because it connects many separate bioinformatics tools into one workflow with explicit inputs, environments, and final targets.
+The value of the project is not a new algorithm. It is the explicit connection of many established tools into a reproducible workflow with declared inputs, environments, and output targets.
 
-## The pipeline design
+## Workflow design
 
 The workflow starts from a sample sheet and chooses the assembly path based on whether long reads are available.
 
@@ -33,22 +33,22 @@ The final targets include:
 - a screening summary Excel report
 - core-genome tree files and visualizations
 
-Those outputs make the results reviewable by both command-line users and people who prefer reports and spreadsheets.
+The output design matters because microbial genomics results are often reviewed by people with different preferences: command-line users, report readers, and collaborators who need spreadsheet summaries.
 
-## Why Snakemake was the right fit
+## Why Snakemake fits the problem
 
 Snakemake gives the project a clear contract: what files go in, what files come out, and which rule creates each output. Conda environments are split per module, so tools for QC, assembly, annotation, screening, and reporting can be managed separately.
 
 That matters in bacterial genomics because workflows tend to become fragile when every tool is installed into one environment and every sample is handled manually.
 
-## Results and project report
+## Evidence and outputs
 
-The repo includes a Team 3 project report PDF that discusses workflow design, validation data, assembly quality results, pangenome analysis, phylogeny, and optional screening outputs.
+The workflow diagram and repository structure document the expected analysis path. The final targets include QC reports, assemblies, annotations, screening summaries, and core-genome phylogeny files.
 
 Even though raw FASTQ files and generated results are not tracked in Git, the pipeline records the expected outputs in the Snakefile. That makes the repo understandable without shipping huge data files.
 
-## What I would improve next
+## Limitations and next steps
 
 The next version could add a small public test dataset and a CI dry-run so new users can verify the workflow immediately. I would also add example rendered reports to the site so the output structure is visible without running the full pipeline.
 
-As a portfolio project, this repo shows reproducible workflow thinking: modular rules, clear configuration, sample-sheet driven execution, and outputs that support both analysis and reporting.
+As a research-engineering artifact, the repository demonstrates modular rules, clear configuration, sample-sheet driven execution, and outputs that support both analysis and review.

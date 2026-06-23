@@ -1,6 +1,6 @@
 ---
-title: "StrataDock: Building a Modular Molecular Docking Workstation"
-description: "A practical docking workstation that wraps receptor preparation, ligand handling, pocket selection, Vina/GNINA docking, validation, reporting, and Streamlit UI into one repeatable workflow."
+title: "StrataDock as a reproducible molecular docking workflow"
+description: "A technical note on building StrataDock as a repeatable docking workstation with receptor preparation, ligand handling, pocket definition, Vina/GNINA execution, validation cases, and report exports."
 date: 2025-05-01
 tags: ["Molecular Docking", "Streamlit", "Vina", "GNINA", "Drug Discovery"]
 github: "https://github.com/prithvirajanR/StrataDock"
@@ -12,13 +12,13 @@ featured: true
 order: 3
 ---
 
-StrataDock was built around a practical frustration: molecular docking workflows are often scattered across scripts, binary installs, manual file preparation, and one-off result folders. The goal was to turn that into a Linux-first docking workstation that a user can run repeatedly.
+StrataDock was developed to make a common docking workflow more repeatable: receptor preparation, ligand handling, binding-site definition, docking execution, scoring, visualization, and report export. The project is best understood as workflow engineering for computational structural biology rather than as a claim that docking scores alone can solve binding prediction.
 
-The app supports the messy real case. A user might have a receptor PDB, a few ligands, no reference ligand, and no polished docking box. StrataDock gives them a structured path from upload to ranked results.
+The practical use case is intentionally messy. A user may have a receptor PDB, a ligand file or small ligand library, no reference ligand, and no clean docking box. StrataDock provides a structured path from input files to ranked outputs.
 
 ![StrataDock run screen showing docking configuration and terminal progress](/blog/stratadock-run.jpg)
 
-## What the workflow handles
+## Workflow scope
 
 The workflow covers receptor cleanup, ligand preparation, binding-site definition, docking, scoring, visualization, and export. It supports AutoDock Vina by default and GNINA as an optional CPU/CUDA path.
 
@@ -28,9 +28,9 @@ Binding-site setup is deliberately flexible:
 - fpocket mode when only a receptor structure is available
 - manual box mode when coordinates are already known
 
-That design makes the app useful beyond a demo dataset, because real docking users often do not start with a perfect co-crystal setup.
+This is deliberately broader than a single demonstration dataset. Real docking work often begins with incomplete structural context, so the application separates the binding-site decision from the docking engine itself.
 
-## Validation and results
+## Validation design
 
 The repo includes five co-crystal redocking validation systems:
 
@@ -40,20 +40,20 @@ The repo includes five co-crystal redocking validation systems:
 - trypsin, 3PTB
 - HSV thymidine kinase, 1KIM
 
-Each validation case includes receptor files, native ligand files, ligand SDF inputs, docking box coordinates, and acceptance checks such as pose RMSD thresholds, score presence, and pose-file existence.
+Each validation case includes receptor files, native ligand files, ligand SDF inputs, docking box coordinates, and checks for pose files, docking scores, and pose-level RMSD thresholds.
 
-That validation set is the most important result of the engineering work. It turns StrataDock from a UI wrapper into a workflow with testable behavior.
+The validation set is the most important engineering result. It turns StrataDock from a user-interface wrapper into a workflow with testable behavior and known reference cases.
 
 ![StrataDock ADMET and docking result table](/blog/stratadock-admet.jpg)
 
-## Engineering choices
+## Implementation notes
 
 The repo is split into core modules for docking, reports, pockets, receptors, ligands, sessions, and visualization. The Streamlit app is large, but the important logic lives in reusable modules under `src/stratadock/core`.
 
 The test suite covers ADMET-style profiles, batch runs, binding boxes, diagnostics, GNINA handling, pocket prediction, receptor and ligand preparation, reports, sessions, UI tables, and validation data.
 
-## Why this is portfolio-worthy
+## Limitations and next steps
 
-This project shows a different kind of bioinformatics skill: not just running an analysis, but building an actual tool. It combines scientific domain logic, workflow ergonomics, UI design, validation data, and reproducible exports.
+Docking output should be treated as triage, not a definitive binding claim. The validation cases help confirm that the pipeline behaves sensibly on known systems, but they do not establish broad predictive accuracy across all receptors, ligands, or scoring functions.
 
-For a future version, I would keep simplifying the Streamlit app into smaller panels and add more visual regression checks around the UI. The core direction is solid: make docking practical, repeatable, and inspectable.
+The next version should continue separating core workflow logic from the Streamlit surface, add more visual and command-line regression checks, and report interface-quality metrics more explicitly for validation cases.
