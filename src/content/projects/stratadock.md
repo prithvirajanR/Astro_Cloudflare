@@ -1,8 +1,8 @@
 ---
 title: "StrataDock"
-description: "An end-to-end automated molecular docking pipeline built with Streamlit. Integrates ESMFold for protein structure prediction and supports GNINA and AutoDock Vina for GPU/CPU docking. Includes ligand preparation, scoring analysis, and 3D visualization."
+description: "A Linux-first docking workstation for the messy real case: receptor files, ligand libraries, pocket choices, Vina/GNINA runs, validation cases, reports, and exports in one repeatable flow."
 tags: ["Python", "Streamlit", "ESMFold", "GNINA", "Bioinformatics", "Drug Discovery"]
-github: "https://github.com/prithvirajanR"
+github: "https://github.com/prithvirajanR/StrataDock"
 featured: true
-order: 1
+order: 2
 ---
