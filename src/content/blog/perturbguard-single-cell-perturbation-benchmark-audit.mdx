@@ -1,0 +1,60 @@
+---
+title: "Auditing single-cell perturbation benchmarks for leakage and confounding"
+description: "A technical note on PerturbGuard, a guardrail tool for auditing AnnData perturbation datasets, split claims, leakage, controls, confounding, and benchmark validity."
+date: 2026-06-23
+tags: ["Single-cell", "Perturbation", "Benchmarking", "AnnData", "Data Leakage"]
+github: "https://github.com/prithvirajanR/perturbguard"
+repo: "PerturbGuard"
+heroImage: "/projects/perturbguard-report.svg"
+heroAlt: "PerturbGuard audit report table visual"
+readingTime: "7 min read"
+featured: true
+order: 0
+---
+
+Perturbation models are easy to overstate because a benchmark can look successful for the wrong reason. A split can leak perturbations across train and test, a batch variable can predict the label, controls can be missing, or a target effect can be too weak to support the biological claim being made.
+
+PerturbGuard is a guardrail tool for asking a narrower but important question: before trusting a perturbation benchmark, does the dataset and split design actually support the claim?
+
+<figure>
+  <img src="/projects/perturbguard-report.svg" alt="PerturbGuard plain audit report table visual" />
+  <figcaption>PerturbGuard is framed as benchmark quality control rather than a new perturbation prediction model.</figcaption>
+</figure>
+
+## Research question
+
+Can a single-cell perturbation benchmark be audited for common validity failures before a model result is interpreted as biological generalization?
+
+The focus is not model architecture. The focus is the experimental contract around the model: data integrity, controls, metadata, split construction, and whether the claimed generalization task is actually represented by the held-out set.
+
+## Methods
+
+PerturbGuard works with AnnData `.h5ad` files and produces human-readable and machine-readable outputs: HTML reports, CSV tables, JSON summaries, and Markdown dataset cards.
+
+The repository supports several audit layers:
+
+- AnnData loadability, matrix presence, cell and gene counts, controls, and metadata integrity
+- configuration inference for messy public datasets with different metadata column names
+- repair steps for normalized metadata and unique indices
+- perturbation support, target effects, guide consistency, and target mapping checks
+- split generation for random, balanced, leave-target-gene-out, leave-perturbation-out, metadata holdout, and combination splits
+- claim checking for unseen perturbation, unseen target gene, and unseen combination settings
+- leakage detection across train, validation, and test partitions
+
+That makes the project closer to `FastQC` for perturbation benchmarks than to a model-training package.
+
+## Evidence
+
+The README shows command-line workflows for simulation, auditing, split generation, claim checking, model evaluation, and expected-finding validation. A typical audit starts with a dataset, optional inferred configuration, and an output folder:
+
+```bash
+perturbguard audit --data data/repaired.h5ad --config configs/inferred.yaml --out results/audit
+```
+
+The output is not just a pass/fail message. The report records status filters, summary cards, recommendations, and CSV tables, which makes it possible to inspect why a benchmark was flagged.
+
+## Limitations and next steps
+
+PerturbGuard should not be treated as a final authority on biological validity. It is a first public guardrail release, and the thresholds and warning logic still need validation across more datasets and study designs.
+
+The strongest next step would be a benchmark suite of known-good and known-bad perturbation datasets. That would let the tool report not only what it checks, but how reliably those checks detect real benchmark failure modes.

@@ -1,0 +1,59 @@
+---
+title: "Adenovirus genome assembly and comparative analysis with Snakemake"
+description: "A technical note on a Snakemake workflow for human adenovirus genome assembly, consensus calling, variability analysis, phylogenetic inference, and reproducible reporting."
+date: 2026-06-22
+tags: ["Virus Genomics", "Snakemake", "Genome Assembly", "Phylogeny", "Reproducibility"]
+github: "https://github.com/prithvirajanR/virus-genome-analysis-workflow"
+repo: "virus-genome-analysis-workflow"
+heroImage: "/projects/adenovirus-variability.png"
+heroAlt: "Human adenovirus genome variability plot across genome position"
+readingTime: "7 min read"
+featured: true
+order: 0
+---
+
+This repository defines a Snakemake workflow for human adenovirus genome analysis. It starts from raw paired-end sequencing reads and produces assembled genomes, consensus sequences, multiple sequence alignments, variability plots, phylogenetic trees, and QC summaries.
+
+The workflow is designed for human adenovirus, but the structure is general enough to adapt to other DNA virus genome projects with an appropriate reference genome.
+
+<figure>
+  <img src="/projects/adenovirus-variability.png" alt="Human adenovirus sequence variability plot across genome position" />
+  <figcaption>Example genome-wide variability output showing windowed Shannon entropy across assembled adenovirus strains.</figcaption>
+</figure>
+
+## Research question
+
+Can raw adenovirus sequencing reads be processed through a reproducible workflow that supports assembly, consensus generation, comparative genomics, and publication-ready summary figures?
+
+The useful part of the project is not a single tool call. It is the full path from FASTQ files to interpretable comparative outputs.
+
+## Methods
+
+The workflow is implemented in Snakemake and uses isolated Conda environments for external tools. The main analysis path includes:
+
+- read quality control and adapter trimming with `fastp`
+- optional host decontamination with `Bowtie2`
+- optional taxonomic screening with `Kraken2`
+- de novo assembly with `SPAdes`
+- reference-guided scaffolding with `RagTag`
+- optional polishing with `Pilon`
+- reference selection with `Mash`
+- consensus calling with `BWA-MEM2` and `samtools consensus`
+- multiple sequence alignment with `MAFFT`
+- variability analysis using Shannon entropy
+- phylogenetic inference with `IQ-TREE`
+- QC aggregation with `MultiQC`
+
+The pipeline is configured through `config/config.yaml` and a sample table, so the input contract is explicit.
+
+## Evidence
+
+The repository includes example figures for sequence variability, phylogenetic structure, and the pipeline flowchart. The README also documents the full step-by-step path from raw reads to final figures.
+
+The variability plot is especially useful as a review artifact because it summarizes conservation and hypervariable regions across the assembled genome alignment instead of leaving the result buried in intermediate FASTA files.
+
+## Limitations and next steps
+
+The workflow is strongest as a reproducible analysis scaffold. Its scientific conclusions still depend on sample quality, coverage, reference choice, assembly quality, and the representativeness of the analyzed strains.
+
+A stronger next version would include a small public test dataset, a documented dry-run target, and CI checks for the workflow graph. That would make the pipeline easier for another researcher to validate before running it on real samples.
