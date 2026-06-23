@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">BRCA classifier notebook report</title>
+  <desc id="desc">Notebook-style report visual for BRCA epigenetic aging and subtype classification.</desc>
+  <rect width="1200" height="675" fill="#f7f7f7"/>
+  <rect x="78" y="58" width="1044" height="559" rx="10" fill="#ffffff" stroke="#d9d9d9"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="118" y="117" fill="#111111" font-size="34" font-weight="800">BRCA age + epigenetics classifier</text>
+    <text x="118" y="153" fill="#666666" font-size="20">TCGA BRCA notebook summary - methylation, immune scores, RNA features, PAM50 labels</text>
+
+    <rect x="118" y="198" width="330" height="310" fill="#fbfbfb" stroke="#dddddd"/>
+    <text x="142" y="236" fill="#111111" font-size="22" font-weight="800">Feature blocks</text>
+    <g font-size="18">
+      <text x="142" y="286" fill="#333333">clinical metadata</text>
+      <rect x="330" y="268" width="78" height="18" fill="#dbeafe"/>
+      <text x="142" y="328" fill="#333333">DNA methylation age</text>
+      <rect x="330" y="310" width="54" height="18" fill="#e9d5ff"/>
+      <text x="142" y="370" fill="#333333">immune deconvolution</text>
+      <rect x="330" y="352" width="96" height="18" fill="#ccfbf1"/>
+      <text x="142" y="412" fill="#333333">RNA expression</text>
+      <rect x="330" y="394" width="118" height="18" fill="#fed7aa"/>
+      <text x="142" y="454" fill="#333333">PAM50 subtype labels</text>
+      <rect x="330" y="436" width="88" height="18" fill="#fecdd3"/>
+    </g>
+
+    <rect x="486" y="198" width="278" height="310" fill="#fbfbfb" stroke="#dddddd"/>
+    <text x="510" y="236" fill="#111111" font-size="22" font-weight="800">Subtype matrix</text>
+    <g transform="translate(510 268)">
+      <g fill="#eeeeee">
+        <rect x="0" y="0" width="42" height="42"/><rect x="48" y="0" width="42" height="42"/><rect x="96" y="0" width="42" height="42"/><rect x="144" y="0" width="42" height="42"/>
+        <rect x="0" y="48" width="42" height="42"/><rect x="48" y="48" width="42" height="42"/><rect x="96" y="48" width="42" height="42"/><rect x="144" y="48" width="42" height="42"/>
+        <rect x="0" y="96" width="42" height="42"/><rect x="48" y="96" width="42" height="42"/><rect x="96" y="96" width="42" height="42"/><rect x="144" y="96" width="42" height="42"/>
+        <rect x="0" y="144" width="42" height="42"/><rect x="48" y="144" width="42" height="42"/><rect x="96" y="144" width="42" height="42"/><rect x="144" y="144" width="42" height="42"/>
+      </g>
+      <rect x="0" y="0" width="42" height="42" fill="#2563eb"/>
+      <rect x="48" y="48" width="42" height="42" fill="#7c3aed"/>
+      <rect x="96" y="96" width="42" height="42" fill="#0f766e"/>
+      <rect x="144" y="144" width="42" height="42" fill="#ea580c"/>
+      <rect x="96" y="48" width="42" height="42" fill="#93c5fd"/>
+      <rect x="48" y="96" width="42" height="42" fill="#c4b5fd"/>
+      <text x="0" y="230" fill="#666666" font-size="16">Basal / LumA / LumB / HER2</text>
+    </g>
+
+    <rect x="802" y="198" width="280" height="310" fill="#fbfbfb" stroke="#dddddd"/>
+    <text x="826" y="236" fill="#111111" font-size="22" font-weight="800">Model notes</text>
+    <g font-size="18" fill="#333333">
+      <text x="826" y="286">01 preprocessing notebooks</text>
+      <text x="826" y="328">02 delta-age calculation</text>
+      <text x="826" y="370">03 immune score integration</text>
+      <text x="826" y="412">05 multiclass classification</text>
+      <text x="826" y="454">06 biological annotation</text>
+    </g>
+
+    <rect x="118" y="546" width="964" height="1" fill="#dddddd"/>
+    <text x="118" y="579" fill="#666666" font-size="18">Goal: test whether aging-related methylation and immune context add signal for subtype classification.</text>
+  </g>
+</svg>

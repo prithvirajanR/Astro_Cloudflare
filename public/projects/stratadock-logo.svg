@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">StrataDock logo</title>
+  <desc id="desc">Logo plate based on the StrataDock application header.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#171717"/>
+      <stop offset="1" stop-color="#252525"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <g opacity="0.15" stroke="#ffffff" stroke-width="2" fill="none">
+    <path d="M900 150h90l45 78-45 78h-90l-45-78z"/>
+    <path d="M1010 320h70l35 61-35 61h-70l-35-61z"/>
+    <path d="M785 390h76l38 66-38 66h-76l-38-66z"/>
+    <path d="M990 228l58 98M877 306l-60 84"/>
+  </g>
+  <g font-family="Inter, Arial Black, Arial, sans-serif" transform="translate(118 238)">
+    <text x="0" y="0" fill="#f5f5f5" font-size="72" font-weight="900" font-style="italic" letter-spacing="-2">_ STRATA DOCK</text>
+    <rect x="2" y="35" width="460" height="6" fill="#e94950"/>
+    <text x="2" y="92" fill="#9ca3af" font-size="28" font-weight="700" letter-spacing="3">STRATADOCK V2 - PRITHVI RAJAN</text>
+  </g>
+</svg>
