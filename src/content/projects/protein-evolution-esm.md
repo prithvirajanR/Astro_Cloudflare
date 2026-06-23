@@ -1,7 +1,7 @@
 ---
 title: "Protein Evolution with ESM Models"
-description: "A protein language model project around APP variant effects, epistasis, embedding-distance scoring, and inverse sequence-recovery experiments. The interesting part was not just getting good scores, but checking where the model signal held up after folding and docking."
-tags: ["Protein ML", "ESM", "PyTorch", "Epistasis", "Docking", "HPC"]
+description: "Benchmarks ESM-1v and ESM-2 on APP deep-mutational scanning data: reconstruct variants, score MLLR/PLL/embedding distance, then ask where the signal holds up for epistasis and synthetic fitness landscapes."
+tags: ["Protein ML", "ESM", "PyTorch", "DMS", "Epistasis", "ProteinGym"]
 github: "https://github.com/prithvirajanR/ESM-DeepLearning"
 featured: true
 order: 1

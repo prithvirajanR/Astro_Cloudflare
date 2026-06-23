@@ -1,7 +1,7 @@
 ---
 title: "StrataDock"
-description: "A Linux-first docking workstation for the messy real case: receptor files, ligand libraries, pocket choices, Vina/GNINA runs, validation cases, reports, and exports in one repeatable flow."
-tags: ["Python", "Streamlit", "ESMFold", "GNINA", "Bioinformatics", "Drug Discovery"]
+description: "A Linux-first molecular docking workstation that takes receptor and ligand files through cleanup, pocket choice, Vina/GNINA docking, result ranking, 3D viewing, validation cases, and exportable reports."
+tags: ["Python", "Streamlit", "Vina", "GNINA", "fpocket", "Docking"]
 github: "https://github.com/prithvirajanR/StrataDock"
 featured: true
 order: 2
