@@ -62,7 +62,8 @@ const timelineItems = [
 
 const clustrMapsKey = import.meta.env.PUBLIC_CLUSTRMAPS_KEY || '';
 const visitorMapEmbedSrc = import.meta.env.PUBLIC_VISITOR_MAP_EMBED_SRC || '';
-const defaultVisitorMapSrc = '';
+const defaultVisitorMapSrc =
+  'https://mapmyvisitors.com/map.js?d=P0EPET9SMFWOWsvukEpZyGxHJU71MbxEkE74qx2EOQI&cl=ffffff&w=a';
 const clustrMapsSrc = clustrMapsKey
   ? `https://cdn.clustrmaps.com/map_v2.js?d=${encodeURIComponent(clustrMapsKey)}&cl=ffffff&w=a&t=n`
   : '';
